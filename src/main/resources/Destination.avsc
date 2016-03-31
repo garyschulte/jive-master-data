@@ -1,0 +1,75 @@
+{
+  "type" : "record",
+  "name" : "Destination",
+  "namespace" : "com.jivesoftware.community.cloudalytics.schemata",
+  "fields" : [ {
+    "name" : "class",
+    "type" : {
+      "type" : "string",
+      "order" : "ignore"
+    }
+  }, {
+    "name" : "objectType",
+    "type" : "string"
+  }, {
+    "name" : "objectId",
+    "type" : "long"
+  }, {
+    "name" : "objectHash",
+    "type" : "string"
+  }, {
+    "name" : "name",
+    "type" : "string"
+  }, {
+    "name" : "extras",
+    "type" : {
+      "type" : "map",
+      "values" : [ "string", "boolean", "long" ]
+    }
+  }, {
+    "name" : "tags",
+    "type" : {
+      "type" : "array",
+      "items" : "string"
+    }
+  }, {
+    "name" : "displayName",
+    "type" : "string"
+  }, {
+    "name" : "description",
+    "type" : "string"
+  }, {
+    "name" : "url",
+    "type" : "string"
+  }, {
+    "name" : "status",
+    "type" : "string"
+  }, {
+    "name" : "fullPath",
+    "type" : "string"
+  }, {
+    "name" : "normalizedPath",
+    "type" : "string"
+  }, {
+    "name" : "combinedObjectTypeId",
+    "type" : "string"
+  }, {
+    "name" : "isDataAvailable",
+    "type" : "boolean"
+  }, {
+    "name" : "isVisibleToPartner",
+    "type" : "boolean"
+  }, {
+    "name" : "creationDate",
+    "type" : "long"
+  }, {
+    "name" : "modificationDate",
+    "type" : "long"
+  }, {
+    "name" : "parentId",
+    "type" : "long"
+  }, {
+    "name" : "parentType",
+    "type" : "string"
+  } ]
+}

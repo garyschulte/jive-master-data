@@ -1,0 +1,347 @@
+@namespace("com.jivesoftware.community.cloudalytics.schemata")
+
+protocol Cloudalytics {
+
+    record Actor {
+        @order("ignore")
+
+        string class;
+        string objectType;
+        long objectId;
+        union { null, string } objectHash = null;
+        boolean isDataAvailable;
+        array<string> tags;
+        map<union { string, boolean, long }> extras;
+
+        map<string> profile;
+        string username;
+        string name;
+        string firstName;
+        string lastName;
+        union { null, string } email = null;
+        long creationDate;
+        long modificationDate;
+
+        boolean enabled;
+        long lastLoggedIn;
+        long lastProfileUpdate;
+        string type;
+        boolean federated;
+        boolean visible;
+
+        string status;
+        string url;
+    }
+
+    record Destination {
+        @order("ignore")
+        string class;
+        string objectType;
+        long objectId;
+        string objectHash;
+        string name;
+        map<union {string, boolean, long}> extras;
+        array<string> tags;
+
+        string displayName;
+        string description;
+        string url;
+        string status;
+        string fullPath;
+        string normalizedPath;
+        string combinedObjectTypeId;
+        boolean isDataAvailable;
+        boolean isVisibleToPartner;
+        long creationDate;
+        long modificationDate;
+        long parentId;
+        string parentType;
+    }
+
+    record ActorRelation {
+        @order("ignore")
+        Actor user;
+        Actor relatedUser;
+        string status;
+        string graphType;
+        string relation;
+        long creationDate;
+        long retiredDate;
+    }
+
+    record ActorRelationList {
+        @order("ignore")
+        int size;
+        string name;
+    }
+
+    record AppLoad {
+        @order("ignore")
+        string appName;
+        string appURL;
+        string extensionUUID;
+        boolean isSynthetic;
+        string associatedObjectType;
+        long associatedObjectId;
+        string associatedName;
+    }
+
+
+    record Attachment {
+        @order("ignore")
+        string mimeType;
+        string fileName;
+        int attachmentSize;
+        boolean contentDataAvailable;
+        long creationDate;
+        long modificationDate;
+    }
+
+    record ExStorageFile {
+        @order("ignore")
+        string contentObjectType;
+        long contentObjectId;
+        string definitionObjectType;
+        long definitionObjectId;
+        string definitionName;
+        string extensionUUID;
+    }
+
+    record ExStorageAttachment {
+        @order("ignore")
+        string definitionObjectType;
+        long definitionObjectId;
+        string definitionName;
+        string extensionUUID;
+    }
+
+    record Extension {
+        @order("ignore")
+        string extensionUUID;
+        string name;
+        long creationDate;
+        long deployDate;
+        boolean isLocal;
+        string status;
+        string type;
+        boolean isVisibleToAll;
+    }
+
+    record HistoricalReplayStatistics {
+        @order("ignore")
+        string state;
+        int batchSize;
+        int batchIntervalMS;
+        string runId;
+        string stage;
+        long stageNumToProcess;
+        long stageStartTime;
+        long stageEndTime;
+        int stageProcessedCount;
+        int stageSentCount;
+        int stageDroppedCount;
+        int stageErrorCount;
+        int stageUnknownCodeCount;
+        string cursor;
+        long batchStartTime;
+        int batchNumFound;
+        int batchSentCount;
+        int batchDroppedCount;
+        int batchErrorCount;
+        int batchUnknownCodeCount;
+    }
+
+    record Invitation {
+        @order("ignore")
+        long invitationId;
+        string invterUserName;
+        string inviterEmail;
+        string inviteeEmail;
+        string revokerUsername;
+        string state;
+        long sentDate;
+        long revokeDate;
+        long creationDate;
+        long modificationDate;
+
+    }
+
+    record PlayboxQuest {
+        @order("ignore")
+        string questId;
+        string taskId;
+        string secret;
+        boolean isApiRequest;
+    }
+
+    record Search {
+        @order("ignore")
+        string keywords;
+        long searchSelectedId;
+        string searchSelectedType;
+        array<string> queries;
+        string searchFinalQuery;
+    }
+
+    record SecurityGroup {
+        @order("ignore")
+        string name;
+        long creationDate;
+        long modificationDate;
+        boolean federated;
+    }
+
+    record TileInstance {
+        @order("ignore")
+        string tileDefinitionObjectType;
+        long tileDefinitionObjectId;
+        string tileDefinitionName;
+        string tileDefinitionVisualType;
+        boolean isActivityStream;
+        string extensionUUID;
+    }
+
+    record UserRewardBadge {
+        @order("ignore")
+        string badgeId;
+        string userEmail;
+        string message;
+        string streamEntryId;
+        string streamEntryUrl;
+    }
+
+    /******** BEGIN CONTENT ACTIVITY DEFINITIONS **********/
+
+     record Comment {
+         @order("ignore")
+         //Comment fields
+         union { null, long } parentCommentId = null;
+         union { null, string } parentComment = null;
+
+     }
+
+    record Question {
+        @order("ignore")
+        //  Question fields
+        union { null, boolean } isQuestion = null;
+        union { null, string } questionStatus = null;
+        union { null, boolean } resolved = null;
+        union { null, boolean } assumedResolved = null;
+        union { null, boolean } open = null;
+        union { null, long } questionCreateDate = null;
+        union { null, long } resolutionDate = null;
+        union { null, int } numHelpfulAnswers = null;
+        union { null, int } numReplies = null;
+
+    }
+
+    record ParentTask {
+        // exists to resolve circular reference between actionObject and Task and enforce type
+        @order("ignore")
+        string class;
+        string objectType;
+        long objectId;
+        string objectHash;
+        boolean isDataAvailable;
+        array<string> tags;
+        map<string> extras;
+        union { null, boolean } completed = null;
+        union { null, long } dueDate = null;
+        union { null, Actor } owner = null;
+        union { null, ParentTask } parentTask = null;
+    }
+
+    record Task {
+        @order("ignore")
+        // task fields
+        union { null, boolean } completed = null;
+        union { null, long } dueDate = null;
+        union { null, Actor } owner = null;
+        union { null, ParentTask } parentTask = null;
+
+    }
+
+    record WallEntry {
+        @order("ignore")
+        // wall entry fields
+        union { null, array<long> } recipientIds = null;
+        union { null, int } numRecipients = null;
+        union { null, string } messageType = null;
+
+    }
+
+
+    record Content {
+        @order("ignore")
+        //ActionContent fields
+        string subject;
+        long creationDate;
+        long modificationDate;  // thank god for consistency.  /snark
+
+        //actor author;
+        long containerId;
+        string containerType;
+        boolean isVisibleToPartner;
+        string status;
+        string url;
+        string fullPath;
+        string normalizedPath;
+        string combinedObjectTypeId;
+        union { null, Comment, Question, Task, WallEntry } contentElements;
+
+    }
+
+
+    /***  END CONTENT ACTIVITY DEFINITIONS ****/
+
+    record ActionObject {
+        @order("ignore")
+        string class;
+        string objectType;
+        long objectId;
+        string objectHash;
+        boolean isDataAvailable;
+        array<string> tags;
+        map<string> extras;
+
+        union { null, Actor, Destination, Content, ActorRelation, ActorRelationList
+            , AppLoad, Attachment, ExStorageFile, ExStorageAttachment, Extension
+            , HistoricalReplayStatistics, Invitation, PlayboxQuest, Search
+            , SecurityGroup, TileInstance, UserRewardBadge } extendedActionObject;
+
+    }
+
+
+    record Activity {
+        @order("ignore")
+
+        Actor actor;
+        string action;
+        long activityTime;
+        ActionObject actionObject;
+        Destination destination;
+
+    }
+
+    record Event {
+        @order("ignore")
+
+        string name;
+        long timestamp;
+        long seqId;
+        string uuid;
+        map<map<string>> context;
+        map<string> payload;
+
+        long actorId;
+        int actorType;
+        string activityType;
+        long actionObjectId;
+        int actionObjectType;
+        long containerId;
+        int containerType;
+        Activity activity;
+        boolean isHistoricalReplay;
+    }
+
+}

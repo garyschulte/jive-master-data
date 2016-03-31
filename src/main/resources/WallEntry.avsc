@@ -1,0 +1,21 @@
+{
+  "type" : "record",
+  "name" : "WallEntry",
+  "namespace" : "com.jivesoftware.community.cloudalytics.schemata",
+  "fields" : [ {
+    "name" : "recipientIds",
+    "type" : [ "null", {
+      "type" : "array",
+      "items" : "long"
+    } ],
+    "default" : null
+  }, {
+    "name" : "numRecipients",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "messageType",
+    "type" : [ "null", "string" ],
+    "default" : null
+  } ]
+}
