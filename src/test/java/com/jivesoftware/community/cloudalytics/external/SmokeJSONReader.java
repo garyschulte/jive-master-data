@@ -318,13 +318,13 @@ public class SmokeJSONReader {
     public void testModelMapper() throws IOException {
         ModelMapper modelMapper = new ModelMapper();
 //        modelMapper.getConfiguration().setAmbiguityIgnored(true);
-        modelMapper.addMappings(new ActionMap());
+        //modelMapper.addMappings(new ActionMap());
 
 
 
         EventDocument jsonDoc = parseTestDoc();
         Event avroEvent = modelMapper.map(jsonDoc, Event.class);
-        Content activityContent = modelMapper.map(jsonDoc.getActivity().getActionObject(), Content.class);
+        //Content activityContent = modelMapper.map(jsonDoc.getActivity().getActionObject(), Content.class);
         assertEquals("failed to correctly map action object", (long)jsonDoc.getActionObjectType(), (long)avroEvent.getActionObjectType());
 
 
@@ -356,7 +356,7 @@ public class SmokeJSONReader {
             map(source.getTags()).setTags(null);
             map(source.getExtras()).setExtras(null);
 
-            with(getActionProvider()).map().setExtendedActionObject(source.getShallowClone());
+//            with(getActionProvider()).map().setExtendedActionObject(source.getShallowClone());
 
         }
     }

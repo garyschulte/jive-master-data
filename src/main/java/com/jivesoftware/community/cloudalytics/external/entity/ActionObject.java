@@ -123,7 +123,17 @@ public abstract class ActionObject implements Cloneable {
         return tags;
     }
 
-    public <T extends ActionObject> T getShallowClone() {
+    public ActionObject getExtendedActionObject() {
+        try {
+            return  (ActionObject) this.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+/*
+    public <T extends ActionObject> T getShallowClone(T me) {
         try {
             return  (T)this.clone();
         } catch (CloneNotSupportedException e) {
@@ -131,6 +141,19 @@ public abstract class ActionObject implements Cloneable {
         }
         return null;
     }
+*/
+/*
+
+    public ActionObject getShallowClone() {
+
+        try {
+            return (ActionObject) this.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+*/
 
     public String getClassName() {
         return this.getClassName();
