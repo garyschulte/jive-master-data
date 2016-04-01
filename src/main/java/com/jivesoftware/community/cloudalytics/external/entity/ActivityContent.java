@@ -8,7 +8,7 @@ package com.jivesoftware.community.cloudalytics.external.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.avro.reflect.Union;
 
-public class ActivityContent extends ActionObject implements Cloneable {
+public class ActivityContent extends ActionObject {
 
     @JsonProperty
     private String subject;

@@ -40,7 +40,7 @@ import java.util.Map;
         , TagActionObject.class
         , TileInstanceObject.class
         , UserRewardBadgeActionObject.class})
-public abstract class ActionObject implements Cloneable {
+public abstract class ActionObject {
 
     @JsonProperty
     protected String objectType;
@@ -123,14 +123,6 @@ public abstract class ActionObject implements Cloneable {
         return tags;
     }
 
-    public ActionObject getExtendedActionObject() {
-        try {
-            return  (ActionObject) this.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
 /*
     public <T extends ActionObject> T getShallowClone(T me) {
@@ -154,6 +146,10 @@ public abstract class ActionObject implements Cloneable {
         return null;
     }
 */
+
+    public ActionObject getExtendedActionObject() {
+        return this;
+    }
 
     public String getClassName() {
         return this.getClassName();

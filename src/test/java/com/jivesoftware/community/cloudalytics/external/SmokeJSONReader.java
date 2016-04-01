@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.avro.AvroFactory;
 import com.fasterxml.jackson.dataformat.avro.AvroSchema;
 import com.fasterxml.jackson.dataformat.avro.schema.AvroSchemaGenerator;
-import com.jivesoftware.community.cloudalytics.external.entity.ActionObject;
 import com.jivesoftware.community.cloudalytics.external.entity.ActivityDestination;
 import com.jivesoftware.community.cloudalytics.external.entity.EventDocument;
 import com.jivesoftware.community.cloudalytics.schemata.*;
@@ -317,10 +316,31 @@ public class SmokeJSONReader {
     @Test
     public void testModelMapper() throws IOException {
         ModelMapper modelMapper = new ModelMapper();
-//        modelMapper.getConfiguration().setAmbiguityIgnored(true);
+        //modelMapper.getConfiguration().setAmbiguityIgnored(true);
         //modelMapper.addMappings(new ActionMap());
 
+        Provider<Object> delegatingProvider = new Provider<Object>() {
+            public Object get(ProvisionRequest<Object> request) {
 
+                if (request.getRequestedType().equals(ActionObject.class)) {
+                    ActionObject ao = new ActionObject();
+                    Object eao = null;
+                    String sourceObjType = request.getSource().getClass().getSimpleName();
+                    switch (sourceObjType) {
+                        case "ActivityContent" : eao = new Content(); break;
+                        case "ActivityDestination" : eao = new Destination(); break;
+                        case "Actor" : eao = new Actor(); break;
+                        default : ;
+                    }
+                    ao.setExtendedActionObject(eao);
+                    return ao;
+                }
+                return null;
+            }
+        };
+
+
+        modelMapper.getConfiguration().setProvider(delegatingProvider);
 
         EventDocument jsonDoc = parseTestDoc();
         Event avroEvent = modelMapper.map(jsonDoc, Event.class);
@@ -344,6 +364,9 @@ public class SmokeJSONReader {
         return mapper.readValue(testDoc, EventDocument.class);
     }
 
+
+
+    /*
     public static class ActionMap extends PropertyMap<ActionObject, Action> {
 
         @Override
@@ -355,14 +378,13 @@ public class SmokeJSONReader {
             map().setClass$(source.getClassName());
             map(source.getTags()).setTags(null);
             map(source.getExtras()).setExtras(null);
-
-//            with(getActionProvider()).map().setExtendedActionObject(source.getShallowClone());
+            Blah z = new Blah();
+//            with(z).map().setExtendedActionObject(source.getExtendedActionObject());
 
         }
     }
 
-    public static Provider<Object> getActionProvider() {
-        return new Provider<Object>(){
+    static class Blah implements Provider<Object> {
             @Override
             public Object get(ProvisionRequest<Object> provisionRequest) {
 
@@ -376,8 +398,7 @@ public class SmokeJSONReader {
                     default : return null;
                 }
             }
-        };
-
     }
+*/
 
 }
