@@ -1,0 +1,777 @@
+{
+  "type" : "record",
+  "name" : "AvroAction",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "doc" : "*  END CONTENT ACTIVITY DEFINITIONS ***",
+  "fields" : [ {
+    "name" : "class",
+    "type" : {
+      "type" : "string",
+      "order" : "ignore"
+    }
+  }, {
+    "name" : "objectType",
+    "type" : "string"
+  }, {
+    "name" : "objectId",
+    "type" : "long"
+  }, {
+    "name" : "objectHash",
+    "type" : "string"
+  }, {
+    "name" : "isDataAvailable",
+    "type" : "boolean"
+  }, {
+    "name" : "tags",
+    "type" : {
+      "type" : "array",
+      "items" : "string"
+    }
+  }, {
+    "name" : "extras",
+    "type" : {
+      "type" : "map",
+      "values" : "string"
+    }
+  }, {
+    "name" : "extendedActionObject",
+    "type" : [ "null", {
+      "type" : "record",
+      "name" : "AvroActor",
+      "fields" : [ {
+        "name" : "class",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "objectType",
+        "type" : "string"
+      }, {
+        "name" : "objectId",
+        "type" : "long"
+      }, {
+        "name" : "objectHash",
+        "type" : [ "null", "string" ],
+        "default" : null
+      }, {
+        "name" : "isDataAvailable",
+        "type" : "boolean"
+      }, {
+        "name" : "tags",
+        "type" : {
+          "type" : "array",
+          "items" : "string"
+        }
+      }, {
+        "name" : "extras",
+        "type" : {
+          "type" : "map",
+          "values" : [ "string", "boolean", "long" ]
+        }
+      }, {
+        "name" : "profile",
+        "type" : {
+          "type" : "map",
+          "values" : "string"
+        }
+      }, {
+        "name" : "username",
+        "type" : "string"
+      }, {
+        "name" : "name",
+        "type" : "string"
+      }, {
+        "name" : "firstName",
+        "type" : "string"
+      }, {
+        "name" : "lastName",
+        "type" : "string"
+      }, {
+        "name" : "email",
+        "type" : [ "null", "string" ],
+        "default" : null
+      }, {
+        "name" : "creationDate",
+        "type" : "long"
+      }, {
+        "name" : "modificationDate",
+        "type" : "long"
+      }, {
+        "name" : "enabled",
+        "type" : "boolean"
+      }, {
+        "name" : "lastLoggedIn",
+        "type" : "long"
+      }, {
+        "name" : "lastProfileUpdate",
+        "type" : "long"
+      }, {
+        "name" : "type",
+        "type" : "string"
+      }, {
+        "name" : "federated",
+        "type" : "boolean"
+      }, {
+        "name" : "visible",
+        "type" : "boolean"
+      }, {
+        "name" : "status",
+        "type" : "string"
+      }, {
+        "name" : "url",
+        "type" : "string"
+      } ],
+      "order" : "ignore"
+    }, {
+      "type" : "record",
+      "name" : "AvroDestination",
+      "fields" : [ {
+        "name" : "class",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "objectType",
+        "type" : "string"
+      }, {
+        "name" : "objectId",
+        "type" : "long"
+      }, {
+        "name" : "objectHash",
+        "type" : "string"
+      }, {
+        "name" : "name",
+        "type" : "string"
+      }, {
+        "name" : "extras",
+        "type" : {
+          "type" : "map",
+          "values" : [ "string", "boolean", "long" ]
+        }
+      }, {
+        "name" : "tags",
+        "type" : {
+          "type" : "array",
+          "items" : "string"
+        }
+      }, {
+        "name" : "displayName",
+        "type" : "string"
+      }, {
+        "name" : "description",
+        "type" : "string"
+      }, {
+        "name" : "url",
+        "type" : "string"
+      }, {
+        "name" : "status",
+        "type" : "string"
+      }, {
+        "name" : "fullPath",
+        "type" : "string"
+      }, {
+        "name" : "normalizedPath",
+        "type" : "string"
+      }, {
+        "name" : "combinedObjectTypeId",
+        "type" : "string"
+      }, {
+        "name" : "isDataAvailable",
+        "type" : "boolean"
+      }, {
+        "name" : "isVisibleToPartner",
+        "type" : "boolean"
+      }, {
+        "name" : "creationDate",
+        "type" : "long"
+      }, {
+        "name" : "modificationDate",
+        "type" : "long"
+      }, {
+        "name" : "parentId",
+        "type" : "long"
+      }, {
+        "name" : "parentType",
+        "type" : "string"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroContent",
+      "fields" : [ {
+        "name" : "subject",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "creationDate",
+        "type" : "long"
+      }, {
+        "name" : "modificationDate",
+        "type" : "long"
+      }, {
+        "name" : "containerId",
+        "type" : "long"
+      }, {
+        "name" : "containerType",
+        "type" : "string"
+      }, {
+        "name" : "isVisibleToPartner",
+        "type" : "boolean"
+      }, {
+        "name" : "status",
+        "type" : "string"
+      }, {
+        "name" : "url",
+        "type" : "string"
+      }, {
+        "name" : "fullPath",
+        "type" : "string"
+      }, {
+        "name" : "normalizedPath",
+        "type" : "string"
+      }, {
+        "name" : "combinedObjectTypeId",
+        "type" : "string"
+      }, {
+        "name" : "contentElements",
+        "type" : [ "null", {
+          "type" : "record",
+          "name" : "AvroComment",
+          "doc" : "****** BEGIN CONTENT ACTIVITY DEFINITIONS *********",
+          "fields" : [ {
+            "name" : "parentCommentId",
+            "type" : [ "null", "long" ],
+            "default" : null
+          }, {
+            "name" : "parentComment",
+            "type" : [ "null", "string" ],
+            "default" : null
+          } ]
+        }, {
+          "type" : "record",
+          "name" : "AvroQuestion",
+          "fields" : [ {
+            "name" : "isQuestion",
+            "type" : [ "boolean" ],
+            "default" : true
+          }, {
+            "name" : "questionStatus",
+            "type" : [ "null", "string" ],
+            "default" : null
+          }, {
+            "name" : "resolved",
+            "type" : [ "null", "boolean" ],
+            "default" : null
+          }, {
+            "name" : "assumedResolved",
+            "type" : [ "null", "boolean" ],
+            "default" : null
+          }, {
+            "name" : "open",
+            "type" : [ "null", "boolean" ],
+            "default" : null
+          }, {
+            "name" : "questionCreateDate",
+            "type" : [ "null", "long" ],
+            "default" : null
+          }, {
+            "name" : "resolutionDate",
+            "type" : [ "null", "long" ],
+            "default" : null
+          }, {
+            "name" : "numHelpfulAnswers",
+            "type" : [ "null", "int" ],
+            "default" : null
+          }, {
+            "name" : "numReplies",
+            "type" : [ "null", "int" ],
+            "default" : null
+          } ]
+        }, {
+          "type" : "record",
+          "name" : "AvroThread",
+          "fields" : [ {
+            "name" : "isQuestion",
+            "type" : {
+              "type" : "boolean",
+              "order" : "ignore"
+            },
+            "default" : false
+          } ]
+        }, {
+          "type" : "record",
+          "name" : "AvroTask",
+          "fields" : [ {
+            "name" : "completed",
+            "type" : [ "null", "boolean" ],
+            "default" : null
+          }, {
+            "name" : "dueDate",
+            "type" : [ "null", "long" ],
+            "default" : null
+          }, {
+            "name" : "owner",
+            "type" : [ "null", "AvroActor" ],
+            "default" : null
+          }, {
+            "name" : "parentTask",
+            "type" : [ "null", {
+              "type" : "record",
+              "name" : "AvroParentTask",
+              "fields" : [ {
+                "name" : "class",
+                "type" : {
+                  "type" : "string",
+                  "order" : "ignore"
+                }
+              }, {
+                "name" : "objectType",
+                "type" : "string"
+              }, {
+                "name" : "objectId",
+                "type" : "long"
+              }, {
+                "name" : "objectHash",
+                "type" : "string"
+              }, {
+                "name" : "isDataAvailable",
+                "type" : "boolean"
+              }, {
+                "name" : "tags",
+                "type" : {
+                  "type" : "array",
+                  "items" : "string"
+                }
+              }, {
+                "name" : "extras",
+                "type" : {
+                  "type" : "map",
+                  "values" : "string"
+                }
+              }, {
+                "name" : "completed",
+                "type" : [ "null", "boolean" ],
+                "default" : null
+              }, {
+                "name" : "dueDate",
+                "type" : [ "null", "long" ],
+                "default" : null
+              }, {
+                "name" : "owner",
+                "type" : [ "null", "AvroActor" ],
+                "default" : null
+              }, {
+                "name" : "parentTask",
+                "type" : [ "null", "AvroParentTask" ],
+                "default" : null
+              } ]
+            } ],
+            "default" : null
+          } ]
+        }, {
+          "type" : "record",
+          "name" : "AvroWallEntry",
+          "fields" : [ {
+            "name" : "recipientIds",
+            "type" : [ "null", {
+              "type" : "array",
+              "items" : "long"
+            } ],
+            "default" : null
+          }, {
+            "name" : "numRecipients",
+            "type" : [ "null", "int" ],
+            "default" : null
+          }, {
+            "name" : "messageType",
+            "type" : [ "null", "string" ],
+            "default" : null
+          } ]
+        } ]
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroActorRelation",
+      "fields" : [ {
+        "name" : "user",
+        "type" : "AvroActor"
+      }, {
+        "name" : "relatedUser",
+        "type" : "AvroActor"
+      }, {
+        "name" : "status",
+        "type" : "string"
+      }, {
+        "name" : "graphType",
+        "type" : "string"
+      }, {
+        "name" : "relation",
+        "type" : "string"
+      }, {
+        "name" : "creationDate",
+        "type" : "long"
+      }, {
+        "name" : "retiredDate",
+        "type" : "long"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroActorRelationList",
+      "fields" : [ {
+        "name" : "size",
+        "type" : {
+          "type" : "int",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "name",
+        "type" : "string"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroAppLoad",
+      "fields" : [ {
+        "name" : "appName",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "appURL",
+        "type" : "string"
+      }, {
+        "name" : "extensionUUID",
+        "type" : "string"
+      }, {
+        "name" : "isSynthetic",
+        "type" : "boolean"
+      }, {
+        "name" : "associatedObjectType",
+        "type" : "string"
+      }, {
+        "name" : "associatedObjectId",
+        "type" : "long"
+      }, {
+        "name" : "associatedName",
+        "type" : "string"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroAttachment",
+      "fields" : [ {
+        "name" : "mimeType",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "fileName",
+        "type" : "string"
+      }, {
+        "name" : "attachmentSize",
+        "type" : "int"
+      }, {
+        "name" : "contentDataAvailable",
+        "type" : "boolean"
+      }, {
+        "name" : "creationDate",
+        "type" : "long"
+      }, {
+        "name" : "modificationDate",
+        "type" : "long"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroExStorageFile",
+      "fields" : [ {
+        "name" : "contentObjectType",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "contentObjectId",
+        "type" : "long"
+      }, {
+        "name" : "definitionObjectType",
+        "type" : "string"
+      }, {
+        "name" : "definitionObjectId",
+        "type" : "long"
+      }, {
+        "name" : "definitionName",
+        "type" : "string"
+      }, {
+        "name" : "extensionUUID",
+        "type" : "string"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroExStorageAttachment",
+      "fields" : [ {
+        "name" : "definitionObjectType",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "definitionObjectId",
+        "type" : "long"
+      }, {
+        "name" : "definitionName",
+        "type" : "string"
+      }, {
+        "name" : "extensionUUID",
+        "type" : "string"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroExtension",
+      "fields" : [ {
+        "name" : "extensionUUID",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "name",
+        "type" : "string"
+      }, {
+        "name" : "creationDate",
+        "type" : "long"
+      }, {
+        "name" : "deployDate",
+        "type" : "long"
+      }, {
+        "name" : "isLocal",
+        "type" : "boolean"
+      }, {
+        "name" : "status",
+        "type" : "string"
+      }, {
+        "name" : "type",
+        "type" : "string"
+      }, {
+        "name" : "isVisibleToAll",
+        "type" : "boolean"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroHistoricalReplayStatistics",
+      "fields" : [ {
+        "name" : "state",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "batchSize",
+        "type" : "int"
+      }, {
+        "name" : "batchIntervalMS",
+        "type" : "int"
+      }, {
+        "name" : "runId",
+        "type" : "string"
+      }, {
+        "name" : "stage",
+        "type" : "string"
+      }, {
+        "name" : "stageNumToProcess",
+        "type" : "long"
+      }, {
+        "name" : "stageStartTime",
+        "type" : "long"
+      }, {
+        "name" : "stageEndTime",
+        "type" : "long"
+      }, {
+        "name" : "stageProcessedCount",
+        "type" : "int"
+      }, {
+        "name" : "stageSentCount",
+        "type" : "int"
+      }, {
+        "name" : "stageDroppedCount",
+        "type" : "int"
+      }, {
+        "name" : "stageErrorCount",
+        "type" : "int"
+      }, {
+        "name" : "stageUnknownCodeCount",
+        "type" : "int"
+      }, {
+        "name" : "cursor",
+        "type" : "string"
+      }, {
+        "name" : "batchStartTime",
+        "type" : "long"
+      }, {
+        "name" : "batchNumFound",
+        "type" : "int"
+      }, {
+        "name" : "batchSentCount",
+        "type" : "int"
+      }, {
+        "name" : "batchDroppedCount",
+        "type" : "int"
+      }, {
+        "name" : "batchErrorCount",
+        "type" : "int"
+      }, {
+        "name" : "batchUnknownCodeCount",
+        "type" : "int"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroInvitation",
+      "fields" : [ {
+        "name" : "invitationId",
+        "type" : {
+          "type" : "long",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "invterUserName",
+        "type" : "string"
+      }, {
+        "name" : "inviterEmail",
+        "type" : "string"
+      }, {
+        "name" : "inviteeEmail",
+        "type" : "string"
+      }, {
+        "name" : "revokerUsername",
+        "type" : "string"
+      }, {
+        "name" : "state",
+        "type" : "string"
+      }, {
+        "name" : "sentDate",
+        "type" : "long"
+      }, {
+        "name" : "revokeDate",
+        "type" : "long"
+      }, {
+        "name" : "creationDate",
+        "type" : "long"
+      }, {
+        "name" : "modificationDate",
+        "type" : "long"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroPlayboxQuest",
+      "fields" : [ {
+        "name" : "questId",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "taskId",
+        "type" : "string"
+      }, {
+        "name" : "secret",
+        "type" : "string"
+      }, {
+        "name" : "isApiRequest",
+        "type" : "boolean"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroSearch",
+      "fields" : [ {
+        "name" : "keywords",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "searchSelectedId",
+        "type" : "long"
+      }, {
+        "name" : "searchSelectedType",
+        "type" : "string"
+      }, {
+        "name" : "queries",
+        "type" : {
+          "type" : "array",
+          "items" : "string"
+        }
+      }, {
+        "name" : "searchFinalQuery",
+        "type" : "string"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroSecurityGroup",
+      "fields" : [ {
+        "name" : "name",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "creationDate",
+        "type" : "long"
+      }, {
+        "name" : "modificationDate",
+        "type" : "long"
+      }, {
+        "name" : "federated",
+        "type" : "boolean"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroTileInstance",
+      "fields" : [ {
+        "name" : "tileDefinitionObjectType",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "tileDefinitionObjectId",
+        "type" : "long"
+      }, {
+        "name" : "tileDefinitionName",
+        "type" : "string"
+      }, {
+        "name" : "tileDefinitionVisualType",
+        "type" : "string"
+      }, {
+        "name" : "isActivityStream",
+        "type" : "boolean"
+      }, {
+        "name" : "extensionUUID",
+        "type" : "string"
+      } ]
+    }, {
+      "type" : "record",
+      "name" : "AvroUserRewardBadge",
+      "fields" : [ {
+        "name" : "badgeId",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "userEmail",
+        "type" : "string"
+      }, {
+        "name" : "message",
+        "type" : "string"
+      }, {
+        "name" : "streamEntryId",
+        "type" : "string"
+      }, {
+        "name" : "streamEntryUrl",
+        "type" : "string"
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,13 @@
+{
+  "type" : "record",
+  "name" : "AvroThread",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "fields" : [ {
+    "name" : "isQuestion",
+    "type" : {
+      "type" : "boolean",
+      "order" : "ignore"
+    },
+    "default" : false
+  } ]
+}

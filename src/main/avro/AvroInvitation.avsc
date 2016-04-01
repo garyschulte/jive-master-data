@@ -1,0 +1,39 @@
+{
+  "type" : "record",
+  "name" : "AvroInvitation",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "fields" : [ {
+    "name" : "invitationId",
+    "type" : {
+      "type" : "long",
+      "order" : "ignore"
+    }
+  }, {
+    "name" : "invterUserName",
+    "type" : "string"
+  }, {
+    "name" : "inviterEmail",
+    "type" : "string"
+  }, {
+    "name" : "inviteeEmail",
+    "type" : "string"
+  }, {
+    "name" : "revokerUsername",
+    "type" : "string"
+  }, {
+    "name" : "state",
+    "type" : "string"
+  }, {
+    "name" : "sentDate",
+    "type" : "long"
+  }, {
+    "name" : "revokeDate",
+    "type" : "long"
+  }, {
+    "name" : "creationDate",
+    "type" : "long"
+  }, {
+    "name" : "modificationDate",
+    "type" : "long"
+  } ]
+}

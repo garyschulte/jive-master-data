@@ -1,0 +1,27 @@
+{
+  "type" : "record",
+  "name" : "AvroExStorageFile",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "fields" : [ {
+    "name" : "contentObjectType",
+    "type" : {
+      "type" : "string",
+      "order" : "ignore"
+    }
+  }, {
+    "name" : "contentObjectId",
+    "type" : "long"
+  }, {
+    "name" : "definitionObjectType",
+    "type" : "string"
+  }, {
+    "name" : "definitionObjectId",
+    "type" : "long"
+  }, {
+    "name" : "definitionName",
+    "type" : "string"
+  }, {
+    "name" : "extensionUUID",
+    "type" : "string"
+  } ]
+}

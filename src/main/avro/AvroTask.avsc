@@ -1,0 +1,160 @@
+{
+  "type" : "record",
+  "name" : "AvroTask",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "fields" : [ {
+    "name" : "completed",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "dueDate",
+    "type" : [ "null", "long" ],
+    "default" : null
+  }, {
+    "name" : "owner",
+    "type" : [ "null", {
+      "type" : "record",
+      "name" : "AvroActor",
+      "fields" : [ {
+        "name" : "class",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "objectType",
+        "type" : "string"
+      }, {
+        "name" : "objectId",
+        "type" : "long"
+      }, {
+        "name" : "objectHash",
+        "type" : [ "null", "string" ],
+        "default" : null
+      }, {
+        "name" : "isDataAvailable",
+        "type" : "boolean"
+      }, {
+        "name" : "tags",
+        "type" : {
+          "type" : "array",
+          "items" : "string"
+        }
+      }, {
+        "name" : "extras",
+        "type" : {
+          "type" : "map",
+          "values" : [ "string", "boolean", "long" ]
+        }
+      }, {
+        "name" : "profile",
+        "type" : {
+          "type" : "map",
+          "values" : "string"
+        }
+      }, {
+        "name" : "username",
+        "type" : "string"
+      }, {
+        "name" : "name",
+        "type" : "string"
+      }, {
+        "name" : "firstName",
+        "type" : "string"
+      }, {
+        "name" : "lastName",
+        "type" : "string"
+      }, {
+        "name" : "email",
+        "type" : [ "null", "string" ],
+        "default" : null
+      }, {
+        "name" : "creationDate",
+        "type" : "long"
+      }, {
+        "name" : "modificationDate",
+        "type" : "long"
+      }, {
+        "name" : "enabled",
+        "type" : "boolean"
+      }, {
+        "name" : "lastLoggedIn",
+        "type" : "long"
+      }, {
+        "name" : "lastProfileUpdate",
+        "type" : "long"
+      }, {
+        "name" : "type",
+        "type" : "string"
+      }, {
+        "name" : "federated",
+        "type" : "boolean"
+      }, {
+        "name" : "visible",
+        "type" : "boolean"
+      }, {
+        "name" : "status",
+        "type" : "string"
+      }, {
+        "name" : "url",
+        "type" : "string"
+      } ],
+      "order" : "ignore"
+    } ],
+    "default" : null
+  }, {
+    "name" : "parentTask",
+    "type" : [ "null", {
+      "type" : "record",
+      "name" : "AvroParentTask",
+      "fields" : [ {
+        "name" : "class",
+        "type" : {
+          "type" : "string",
+          "order" : "ignore"
+        }
+      }, {
+        "name" : "objectType",
+        "type" : "string"
+      }, {
+        "name" : "objectId",
+        "type" : "long"
+      }, {
+        "name" : "objectHash",
+        "type" : "string"
+      }, {
+        "name" : "isDataAvailable",
+        "type" : "boolean"
+      }, {
+        "name" : "tags",
+        "type" : {
+          "type" : "array",
+          "items" : "string"
+        }
+      }, {
+        "name" : "extras",
+        "type" : {
+          "type" : "map",
+          "values" : "string"
+        }
+      }, {
+        "name" : "completed",
+        "type" : [ "null", "boolean" ],
+        "default" : null
+      }, {
+        "name" : "dueDate",
+        "type" : [ "null", "long" ],
+        "default" : null
+      }, {
+        "name" : "owner",
+        "type" : [ "null", "AvroActor" ],
+        "default" : null
+      }, {
+        "name" : "parentTask",
+        "type" : [ "null", "AvroParentTask" ],
+        "default" : null
+      } ]
+    } ],
+    "default" : null
+  } ]
+}

@@ -1,0 +1,15 @@
+{
+  "type" : "record",
+  "name" : "AvroComment",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "doc" : "****** BEGIN CONTENT ACTIVITY DEFINITIONS *********",
+  "fields" : [ {
+    "name" : "parentCommentId",
+    "type" : [ "null", "long" ],
+    "default" : null
+  }, {
+    "name" : "parentComment",
+    "type" : [ "null", "string" ],
+    "default" : null
+  } ]
+}

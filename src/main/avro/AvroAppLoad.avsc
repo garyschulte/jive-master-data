@@ -1,0 +1,30 @@
+{
+  "type" : "record",
+  "name" : "AvroAppLoad",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "fields" : [ {
+    "name" : "appName",
+    "type" : {
+      "type" : "string",
+      "order" : "ignore"
+    }
+  }, {
+    "name" : "appURL",
+    "type" : "string"
+  }, {
+    "name" : "extensionUUID",
+    "type" : "string"
+  }, {
+    "name" : "isSynthetic",
+    "type" : "boolean"
+  }, {
+    "name" : "associatedObjectType",
+    "type" : "string"
+  }, {
+    "name" : "associatedObjectId",
+    "type" : "long"
+  }, {
+    "name" : "associatedName",
+    "type" : "string"
+  } ]
+}

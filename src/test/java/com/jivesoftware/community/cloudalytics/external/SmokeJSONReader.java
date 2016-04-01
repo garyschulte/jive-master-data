@@ -5,28 +5,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.avro.AvroFactory;
 import com.fasterxml.jackson.dataformat.avro.AvroSchema;
 import com.fasterxml.jackson.dataformat.avro.schema.AvroSchemaGenerator;
-import com.jivesoftware.community.cloudalytics.external.entity.ActivityDestination;
-import com.jivesoftware.community.cloudalytics.external.entity.EventDocument;
-import com.jivesoftware.community.cloudalytics.schemata.*;
+import com.jivesoftware.community.cloudalytics.event.EventModelMap;
+import com.jivesoftware.community.cloudalytics.event.avro.AvroEvent;
+import com.jivesoftware.community.cloudalytics.event.json.EventDocument;
 import org.apache.avro.Schema;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.reflect.ReflectData;
 import org.apache.avro.reflect.ReflectDatumWriter;
-import org.apache.avro.specific.SpecificDatumWriter;
 import org.junit.Test;
-import org.modelmapper.*;
+import org.modelmapper.ModelMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-
-//import com.fasterxml.jackson.dataformat.avro.schema.AvroSchemaGen1erator;
-//import com.jivesoftware.community.cloudalytics.schemata.actor;
-//import com.jivesoftware.community.cloudalytics.schemata.analyticsActivity;
 
 /**
  * Created by gary.schulte on 3/16/16.
@@ -192,98 +185,6 @@ public class SmokeJSONReader {
     public void smokeReadActivity() throws IOException {
         mapper.writeValueAsString(parseTestDoc());
     }
-
-    @Test
-    public void createImplicitAvroSchema() throws JsonMappingException {
-        // Todo: none of this works.  jackson-avro can't handle polymorphism
-
-        //String destination = createImplicitAvroSchema(ActivityDestination.class).toString(true);
-
-        //String activity = createImplicitAvroSchema(ActivityContent.class).toString(true);
-        //String comment = createImplicitAvroSchema(CommentContent.class).toString(true);
-        //String question = createImplicitAvroSchema(QuestionActionObject.class).toString(true);
-        //String task = createImplicitAvroSchema(TaskContent.class).toString(true);
-        //String thread = createImplicitAvroSchema(ThreadActionObject.class).toString(true);
-        //String wall = createImplicitAvroSchema(WallEntryContent.class).toString(true);
-
-        //System.err.println(badge);
-    }
-/*
-    @Test public void smokeJSONtoAvro() throws IOException {
-        EventDocument doc = parseTestDoc();
-        Actor actor = doc.getActivity().getActor();
-
-        //Schema raw = new Schema.Parser().setValidate(true).parse(new File("/Users/gary.schulte/git/master-data/target/classes/activityContent.avsc"));
-        //AvroSchema schema = new AvroSchema(raw);
-        //System.err.println(avroMapper.writer(schema).writeValueAsBytes(doc.getActivity().getActionObject()));
-
-        actor testActor = new actor();
-        testActor.setClass$(actor.getType().name());
-        testActor.setCreationDate(actor.getCreationDate());
-        testActor.setEmail(actor.getEmail());
-        testActor.setEnabled(actor.getEnabled());
-
-        testActor.setFederated(actor.getFederated());
-        testActor.setFirstName(actor.getFirstName());
-        testActor.setIsDataAvailable(actor.getIsDataAvailable());
-        testActor.setLastLoggedIn(actor.getLastLoggedIn());
-        testActor.setLastName(actor.getLastName());
-        testActor.setLastProfileUpdate(actor.getLastProfileUpdate());
-        testActor.setModificationDate(actor.getModificationDate());
-        testActor.setName(actor.getName());
-        testActor.setObjectHash(actor.getObjectHash());
-        testActor.setObjectId(actor.getObjectId());
-        testActor.setObjectType(actor.getObjectType());
-        testActor.setStatus(actor.getStatus().name());
-        testActor.setType(actor.getType().name());
-        testActor.setUrl(actor.getUrl());
-        testActor.setUsername(actor.getUsername());
-        testActor.setVisible(actor.getVisible());
-
-        Map<CharSequence, Object> extras = new HashMap<>();
-        if (actor.getExtras() != null) {
-            extras.putAll(actor.getExtras());
-        }
-        testActor.setExtras(extras);
-
-        List<CharSequence> tags = new ArrayList();
-        if (actor.getTags() != null) {
-            tags.addAll(actor.getTags());
-        }
-        testActor.setTags(tags);
-
-        Map<CharSequence, CharSequence> profile = new HashMap<>();
-        if(testActor.getProfile() != null) {
-            profile.putAll(testActor.getProfile());
-        }
-        testActor.setProfile(profile);
-
-
-        try {
-
-            File file = new File("/tmp/actor.avro");
-
-            // write it
-            DatumWriter<actor> userDatumWriter = new SpecificDatumWriter<actor>(actor.class);
-            DataFileWriter<actor> dataFileWriter = new DataFileWriter<actor>(userDatumWriter);
-            dataFileWriter.create(testActor.getSchema(), file);
-            dataFileWriter.append(testActor);
-            dataFileWriter.close();
-
-            // read it
-            DatumReader<actor> userDatumReader = new SpecificDatumReader<actor>(actor.class);
-            DataFileReader<actor> dataFileReader = new DataFileReader<actor>(file, userDatumReader);
-            actor user = null;
-            while (dataFileReader.hasNext()) {
-                user = dataFileReader.next(user);
-                System.out.println(user);
-            }
-        } finally {
-
-        }
-    }
-*/
-
 /*
     @Test
     public void testDirectSerialization() throws IOException {
@@ -315,38 +216,17 @@ public class SmokeJSONReader {
 
     @Test
     public void testModelMapper() throws IOException {
-        ModelMapper modelMapper = new ModelMapper();
-        //modelMapper.getConfiguration().setAmbiguityIgnored(true);
-        //modelMapper.addMappings(new ActionMap());
-
-        Provider<Object> delegatingProvider = new Provider<Object>() {
-            public Object get(ProvisionRequest<Object> request) {
-
-                if (request.getRequestedType().equals(ActionObject.class)) {
-                    ActionObject ao = new ActionObject();
-                    Object eao = null;
-                    String sourceObjType = request.getSource().getClass().getSimpleName();
-                    switch (sourceObjType) {
-                        case "ActivityContent" : eao = new Content(); break;
-                        case "ActivityDestination" : eao = new Destination(); break;
-                        case "Actor" : eao = new Actor(); break;
-                        default : ;
-                    }
-                    ao.setExtendedActionObject(eao);
-                    return ao;
-                }
-                return null;
-            }
-        };
-
-
-        modelMapper.getConfiguration().setProvider(delegatingProvider);
-
+        ModelMapper modelMapper = EventModelMap.getJsonToAvroMapper();
         EventDocument jsonDoc = parseTestDoc();
-        Event avroEvent = modelMapper.map(jsonDoc, Event.class);
+        AvroEvent avroEvent = modelMapper.map(jsonDoc, AvroEvent.class);
+
         //Content activityContent = modelMapper.map(jsonDoc.getActivity().getActionObject(), Content.class);
         assertEquals("failed to correctly map action object", (long)jsonDoc.getActionObjectType(), (long)avroEvent.getActionObjectType());
 
+
+        EventDocument postAvroJsonDoc = modelMapper.map(avroEvent, EventDocument.class);
+
+        assertEquals("failed to correctly remap action object", (long)jsonDoc.getActionObjectType(), (long)postAvroJsonDoc.getActionObjectType());
 
     }
 
@@ -364,41 +244,5 @@ public class SmokeJSONReader {
         return mapper.readValue(testDoc, EventDocument.class);
     }
 
-
-
-    /*
-    public static class ActionMap extends PropertyMap<ActionObject, Action> {
-
-        @Override
-        protected void configure() {
-            map().setObjectHash(source.getObjectHash());
-            map().setObjectId(source.getObjectId());
-            map().setObjectType(source.getObjectType());
-            map().setIsDataAvailable(source.getIsDataAvailable());
-            map().setClass$(source.getClassName());
-            map(source.getTags()).setTags(null);
-            map(source.getExtras()).setExtras(null);
-            Blah z = new Blah();
-//            with(z).map().setExtendedActionObject(source.getExtendedActionObject());
-
-        }
-    }
-
-    static class Blah implements Provider<Object> {
-            @Override
-            public Object get(ProvisionRequest<Object> provisionRequest) {
-
-                // I hate myself a little bit for this.
-                String objClass = ((ActionObject) provisionRequest.getSource()).getObjectType();
-                System.err.println("objClass: " + objClass);
-                switch (objClass) {
-                    case "ActivityContent" : return new Content();
-                    case "ActivityDestination" : return new Destination();
-                    case "Actor" : return new Actor();
-                    default : return null;
-                }
-            }
-    }
-*/
 
 }

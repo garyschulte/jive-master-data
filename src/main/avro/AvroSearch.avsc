@@ -1,0 +1,27 @@
+{
+  "type" : "record",
+  "name" : "AvroSearch",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "fields" : [ {
+    "name" : "keywords",
+    "type" : {
+      "type" : "string",
+      "order" : "ignore"
+    }
+  }, {
+    "name" : "searchSelectedId",
+    "type" : "long"
+  }, {
+    "name" : "searchSelectedType",
+    "type" : "string"
+  }, {
+    "name" : "queries",
+    "type" : {
+      "type" : "array",
+      "items" : "string"
+    }
+  }, {
+    "name" : "searchFinalQuery",
+    "type" : "string"
+  } ]
+}

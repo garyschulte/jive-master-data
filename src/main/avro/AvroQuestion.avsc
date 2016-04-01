@@ -1,0 +1,42 @@
+{
+  "type" : "record",
+  "name" : "AvroQuestion",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "fields" : [ {
+    "name" : "isQuestion",
+    "type" : [ "boolean" ],
+    "default" : true
+  }, {
+    "name" : "questionStatus",
+    "type" : [ "null", "string" ],
+    "default" : null
+  }, {
+    "name" : "resolved",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "assumedResolved",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "open",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "questionCreateDate",
+    "type" : [ "null", "long" ],
+    "default" : null
+  }, {
+    "name" : "resolutionDate",
+    "type" : [ "null", "long" ],
+    "default" : null
+  }, {
+    "name" : "numHelpfulAnswers",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "numReplies",
+    "type" : [ "null", "int" ],
+    "default" : null
+  } ]
+}

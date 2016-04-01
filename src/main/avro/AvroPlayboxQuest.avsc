@@ -1,0 +1,21 @@
+{
+  "type" : "record",
+  "name" : "AvroPlayboxQuest",
+  "namespace" : "com.jivesoftware.community.cloudalytics.event.avro",
+  "fields" : [ {
+    "name" : "questId",
+    "type" : {
+      "type" : "string",
+      "order" : "ignore"
+    }
+  }, {
+    "name" : "taskId",
+    "type" : "string"
+  }, {
+    "name" : "secret",
+    "type" : "string"
+  }, {
+    "name" : "isApiRequest",
+    "type" : "boolean"
+  } ]
+}
