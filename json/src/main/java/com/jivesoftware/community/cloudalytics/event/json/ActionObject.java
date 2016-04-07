@@ -107,4 +107,8 @@ public abstract class ActionObject implements Cloneable {
         }
         return null;
     }
+
+    public String getSimpleClassName() {
+        return this.getClass().getSimpleName();
+    }
 }

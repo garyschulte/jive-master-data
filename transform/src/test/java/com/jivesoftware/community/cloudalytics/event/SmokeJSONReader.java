@@ -1,6 +1,8 @@
 package com.jivesoftware.community.cloudalytics.event;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jivesoftware.community.cloudalytics.event.avro.AvroActor;
+import com.jivesoftware.community.cloudalytics.event.avro.AvroContent;
 import com.jivesoftware.community.cloudalytics.event.avro.AvroEvent;
 import com.jivesoftware.community.cloudalytics.event.json.EventDocument;
 import org.apache.avro.Schema;
@@ -12,6 +14,10 @@ import org.modelmapper.ModelMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -219,9 +225,9 @@ public class SmokeJSONReader {
         //Content activityContent = modelMapper.map(jsonDoc.getActivity().getActionObject(), Content.class);
         assertEquals("failed to correctly map action object", (long) jsonDoc.getActionObjectType(), (long) avroEvent.getActionObjectType());
 
+        //modelMapper.validate();
 
         EventDocument postAvroJsonDoc = EventModelMap.getAvroToJsonMapper().map(avroEvent, EventDocument.class);
-
         assertEquals("failed to correctly remap action object", (long)jsonDoc.getActionObjectType(), (long)postAvroJsonDoc.getActionObjectType());
 
     }
