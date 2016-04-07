@@ -1,13 +1,28 @@
-package com.jivesoftware.community.cloudalytics.external;
+package com.jivesoftware.community.cloudalytics.event;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jivesoftware.community.cloudalytics.event.avro.AvroEvent;
+import com.jivesoftware.community.cloudalytics.event.json.EventDocument;
+import org.apache.avro.Schema;
+import org.apache.avro.file.DataFileWriter;
+import org.apache.avro.io.DatumWriter;
+import org.apache.avro.reflect.ReflectData;
+import org.apache.avro.reflect.ReflectDatumWriter;
+import org.modelmapper.ModelMapper;
+
+import java.io.File;
+import java.io.IOException;
+import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
 
 /**
  * Created by gary.schulte on 3/16/16.
  */
 public class SmokeJSONReader {
-/*
     ObjectMapper mapper = new ObjectMapper();
-    ObjectMapper avroMapper = new ObjectMapper(new AvroFactory());
-    AvroSchemaGenerator gen = new AvroSchemaGenerator();
+//    ObjectMapper avroMapper = new ObjectMapper(new AvroFactory());
+//    AvroSchemaGenerator gen = new AvroSchemaGenerator();
 
     static String testDoc = "{\n" +
             "               \"name\": \"ACTIVITY_CREATE_MESSAGE\",\n" +
@@ -33,7 +48,7 @@ public class SmokeJSONReader {
             "                     \"visible\": \"true\",\n" +
             "                     \"userAgent\": \"Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36\",\n" +
             "                     \"requestId\": \"48ce5090-53c9-11e4-b84e-005056a42765\",\n" +
-            "                     \"external\": \"false\",\n" +
+            "                     \"event\": \"false\",\n" +
             "                     \"userEmail\": \"snavaneeth@sprinklr.com\",\n" +
             "                     \"userType\": \"REGULAR\",\n" +
             "                     \"valueCase\": \"trial\",\n" +
@@ -164,7 +179,7 @@ public class SmokeJSONReader {
     public void smokeReadActivity() throws IOException {
         mapper.writeValueAsString(parseTestDoc());
     }
-/  *
+/*
     @Test
     public void testDirectSerialization() throws IOException {
         Schema schema = new Schema.Parser().parse(new File("activityContent.avsc"));
@@ -175,7 +190,7 @@ public class SmokeJSONReader {
                 .append(doc.getActivity());
     }
 
-*  /
+*/
 
 
     @Test
@@ -208,7 +223,7 @@ public class SmokeJSONReader {
         assertEquals("failed to correctly remap action object", (long)jsonDoc.getActionObjectType(), (long)postAvroJsonDoc.getActionObjectType());
 
     }
-
+/*
     Schema createImplicitAvroSchema(Class clazz) throws JsonMappingException {
 
         avroMapper.acceptJsonFormatVisitor(clazz, gen);
@@ -218,10 +233,10 @@ public class SmokeJSONReader {
         return avroSchema;
 
     }
+*/
 
     EventDocument parseTestDoc() throws IOException {
         return mapper.readValue(testDoc, EventDocument.class);
     }
-*/
 
 }

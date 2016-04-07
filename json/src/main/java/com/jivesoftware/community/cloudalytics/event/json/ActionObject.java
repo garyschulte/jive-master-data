@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.MINIMAL_CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
-public abstract class ActionObject {
+public abstract class ActionObject implements Cloneable {
 
     @JsonProperty
     protected String objectType;
@@ -99,41 +99,12 @@ public abstract class ActionObject {
         return tags;
     }
 
-
-/*
-    public <T extends ActionObject> T getShallowClone(T me) {
-        try {
-            return  (T)this.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-*/
-/*
-
-    public ActionObject getShallowClone() {
-
+    public ActionObject getExtendedAction() {
         try {
             return (ActionObject) this.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-
-
-    public ActionObject getExtendedActionObject() {
-        return this;
-    }
-
-    public void setExtendedActionObject() {
-        //TODO: remove or document modelmapper workaround
-    }
-*/
-
-    public String getClassName() {
-        return this.getClassName();
     }
 }

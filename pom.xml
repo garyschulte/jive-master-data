@@ -26,6 +26,7 @@
         <version.jive-common-pojo>1.1.0.9</version.jive-common-pojo>
         <version.avro>1.8.0</version.avro>
         <version.modelmapper>0.7.5</version.modelmapper>
+        <version.junit>4.12</version.junit>
     </properties>
 
     <dependencyManagement>
@@ -69,6 +70,12 @@
                 <groupId>org.modelmapper</groupId>
                 <artifactId>modelmapper</artifactId>
                 <version>${version.modelmapper}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
