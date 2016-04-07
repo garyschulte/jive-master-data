@@ -212,13 +212,15 @@ public class SmokeJSONReader {
     public void testModelMapper() throws IOException {
         ModelMapper modelMapper = EventModelMap.getJsonToAvroMapper();
         EventDocument jsonDoc = parseTestDoc();
+
+
         AvroEvent avroEvent = modelMapper.map(jsonDoc, AvroEvent.class);
 
         //Content activityContent = modelMapper.map(jsonDoc.getActivity().getActionObject(), Content.class);
         assertEquals("failed to correctly map action object", (long) jsonDoc.getActionObjectType(), (long) avroEvent.getActionObjectType());
 
 
-        EventDocument postAvroJsonDoc = modelMapper.map(avroEvent, EventDocument.class);
+        EventDocument postAvroJsonDoc = EventModelMap.getAvroToJsonMapper().map(avroEvent, EventDocument.class);
 
         assertEquals("failed to correctly remap action object", (long)jsonDoc.getActionObjectType(), (long)postAvroJsonDoc.getActionObjectType());
 
