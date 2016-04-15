@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "appName": {
+      "type": "string"
+    },
+    "appURL": {
+      "type": "string"
+    },
+    "extensionUUID": {
+      "type": "string"
+    },
+    "isSynthetic": {
+      "type": "boolean"
+    },
+    "associatedObjectType": {
+      "type": "string"
+    },
+    "associatedObjectId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "associatedName": {
+      "type": "string"
+    }
+  }
+}

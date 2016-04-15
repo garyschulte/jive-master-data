@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "actor": {
+      "$ref" : "Actor.json"
+    },
+    "action": {
+      "type": "string"
+    },
+    "actionObject": {
+      "$ref" : "ActionObject.json"
+    },
+    "activityTime": {
+      "type": "object",
+      "javaType" : "java.util.Date"
+    },
+    "destination": {
+      "$ref" : "ActivityDestination.json"
+    }
+  }
+}

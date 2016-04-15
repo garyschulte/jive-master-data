@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "publicationID": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "subscriptionData": {
+      "type": "array",
+      "items" : {
+        "$ref": "SubscriptionData.json"
+      }
+    }
+  }
+}

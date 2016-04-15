@@ -36,9 +36,9 @@ public class ActivityContent extends ActionObject {
     @JsonProperty
     private String normalizedPath;
 
-    // stitched in for widened events that started life as "narrow"
+    // this appears to be vestigial, or possibly related to external event widening
     @JsonProperty
-    private String combinedObjectTypeId;
+    private Long authorId = 0L;
 
     public String getSubject() {
         return subject;
@@ -69,7 +69,11 @@ public class ActivityContent extends ActionObject {
     }
 
     public Long getAuthorId() {
-        return author == null ? 0 : author.getObjectId();
+        return author == null ? authorId : author.getObjectId();
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
     public void setAuthor(Actor author) {
@@ -148,11 +152,4 @@ public class ActivityContent extends ActionObject {
         this.normalizedPath = normalizedPath;
     }
 
-    public String getCombinedObjectTypeId() {
-        return combinedObjectTypeId;
-    }
-
-    public void setCombinedObjectTypeId(String combinedObjectTypeId) {
-        this.combinedObjectTypeId = combinedObjectTypeId;
-    }
 }

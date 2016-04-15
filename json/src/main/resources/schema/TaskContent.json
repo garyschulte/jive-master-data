@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActivityContent.json"
+  },
+  "properties": {
+    "completed": {
+      "type": "boolean"
+    },
+    "dueDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "owner": {
+      "$ref": "Actor.json"
+    },
+    "parentTask": {
+      "$ref": "TaskContent.json"
+    }
+  }
+}

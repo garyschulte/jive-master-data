@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "extends" : {
+    "$ref" : "ActionObject.json"
+  },
+  "properties": {
+    "name" : {
+      "type" : "string"
+    },
+    "displayName" : {
+      "type" : "string"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "creationDate" : {
+      "type" : "object",
+      "javaType" : "java.util.Date"
+    },
+    "modificationDate" : {
+      "type" : "object",
+      "javaType" : "java.util.Date"
+    },
+    "url" : {
+      "type" : "string"
+    },
+    "status" : {
+      "type" : "string"
+    },
+    "isVisibleToPartner" : {
+      "type" : "boolean"
+    },
+    "parentId" : {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "parentType" : {
+      "type" : "string"
+    },
+    "fullPath" : {
+      "type" : "string"
+    },
+    "normalizedPath" : {
+      "type" : "string"
+    }
+  }
+}

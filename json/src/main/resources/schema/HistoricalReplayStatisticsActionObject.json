@@ -1,0 +1,72 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "state": {
+      "type": "string"
+    },
+    "batchSize": {
+      "type": "integer"
+    },
+    "batchIntervalMS": {
+      "type": "integer"
+    },
+    "runId": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "stageNumToProcess": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "stageStartTime": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "stageEndTime": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "stageProcessedCount": {
+      "type": "integer"
+    },
+    "stageSentCount": {
+      "type": "integer"
+    },
+    "stageDroppedCount": {
+      "type": "integer"
+    },
+    "stageErrorCount": {
+      "type": "integer"
+    },
+    "stageUnknownCodeCount": {
+      "type": "integer"
+    },
+    "cursor": {
+      "type": "string"
+    },
+    "batchStartTime": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "batchNumFound": {
+      "type": "integer"
+    },
+    "batchSentCount": {
+      "type": "integer"
+    },
+    "batchDroppedCount": {
+      "type": "integer"
+    },
+    "batchErrorCount": {
+      "type": "integer"
+    },
+    "batchUnknownCodeCount": {
+      "type": "integer"
+    }
+  }
+}

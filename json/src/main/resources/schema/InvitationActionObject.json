@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "invitationId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "inviterUsername": {
+      "type": "string"
+    },
+    "inviterEmail": {
+      "type": "string"
+    },
+    "inviteeEmail": {
+      "type": "string"
+    },
+    "revokerUsername": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "sentDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "revokeDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "creationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "modificationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    }
+  }
+}

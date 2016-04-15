@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "extensionUUID": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "creationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "deployDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "isLocal": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "isVisibleToAll": {
+      "type": "boolean"
+    }
+  }
+}

@@ -39,9 +39,10 @@ public class ActivityDestination extends ActionObject implements Cloneable {
     @JsonProperty
     private String normalizedPath;
 
+/* moved up
     @JsonProperty
     private String combinedObjectTypeId;
-
+*/
     public String getName() {
         return name;
     }
@@ -137,7 +138,7 @@ public class ActivityDestination extends ActionObject implements Cloneable {
     public void setNormalizedPath(String normalizedPath) {
         this.normalizedPath = normalizedPath;
     }
-
+/* moved up
     public String getCombinedObjectTypeId() {
         return combinedObjectTypeId;
     }
@@ -145,5 +146,5 @@ public class ActivityDestination extends ActionObject implements Cloneable {
     public void setCombinedObjectTypeId(String combinedObjectTypeId) {
         this.combinedObjectTypeId = combinedObjectTypeId;
     }
-
+*/
 }

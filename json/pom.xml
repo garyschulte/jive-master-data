@@ -39,10 +39,97 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>0.4.22</version>
+                <configuration>
+                    <sourcePaths>
+                        <!-- unfortunately, order matters here. referenced objects listed first -->
+                        <sourcePath>${basedir}/src/main/resources/schema/ActionObject.json</sourcePath>
+
+                        <sourcePath>${basedir}/src/main/resources/schema/SubscriptionData.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/PublicationData.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/Actor.json</sourcePath>
+
+                        <sourcePath>${basedir}/src/main/resources/schema/ActivityContent.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/ThreadActionObject.json</sourcePath>
+
+                        <sourcePath>${basedir}/src/main/resources/schema/ActivityDestination.json</sourcePath>
+
+                        <sourcePath>${basedir}/src/main/resources/schema/AnalyticsActivity.json</sourcePath>
+
+                        <sourcePath>${basedir}/src/main/resources/schema/EventDocument.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/ActorRelation.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/ActorRelationList.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/AppLoadedObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/AttachmentContent.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/CommentContent.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/ExStorageFileObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/ExtensionObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/ExtStorageAttachmentObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/ExtStorageContainerObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/HistoricalReplayStatisticsActionObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/InvitationActionObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/PbQuestActionObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/QuestionActionObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/SearchActionObject.json</sourcePath>h>
+                        <sourcePath>${basedir}/src/main/resources/schema/SecurityGroupActionObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/TagActionObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/TaskContent.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/TileInstanceObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/UserRewardBadgeActionObject.json</sourcePath>
+                        <sourcePath>${basedir}/src/main/resources/schema/WallEntryContent.json</sourcePath>
+                    </sourcePaths>
+                    <outputDirectory>${basedir}/target/generated-sources</outputDirectory>
+                    <targetPackage>com.jivesoftware.community.cloudalytics.event.jsonschema</targetPackage>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- jsonschema2pojo doesn't support configuring JsonTypeInfo of MINIMAL_CLASS, do a cheap swap -->
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <file>${basedir}/target/generated-sources/com/jivesoftware/community/cloudalytics/event/jsonschema/ActionObject.java</file>
+                    <replacements>
+                        <replacement>
+                            <token>JsonTypeInfo.Id.CLASS</token>
+                            <value>JsonTypeInfo.Id.MINIMAL_CLASS</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -51,7 +138,7 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
-        </plugins>
+       </plugins>
     </build>
 
 </project>

@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@JsonTypeInfo(use=JsonTypeInfo.Id.MINIMAL_CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public abstract class ActionObject implements Cloneable {
 
     @JsonProperty
@@ -30,6 +30,10 @@ public abstract class ActionObject implements Cloneable {
     protected Map<String,Object> extras = new HashMap<>();
     @JsonProperty
     protected List<String> tags = new ArrayList<>();
+
+    // discovered in the 'wild' likely from stitched hbase widening
+    @JsonProperty
+    private String combinedObjectTypeId;
 
     public ActionObject() {}
 
@@ -108,7 +112,16 @@ public abstract class ActionObject implements Cloneable {
         return null;
     }
 
+
     public String getSimpleClassName() {
         return this.getClass().getSimpleName();
+    }
+
+    public String getCombinedObjectTypeId() {
+        return combinedObjectTypeId;
+    }
+
+    public void setCombinedObjectTypeId(String combinedObjectTypeId) {
+        this.combinedObjectTypeId = combinedObjectTypeId;
     }
 }

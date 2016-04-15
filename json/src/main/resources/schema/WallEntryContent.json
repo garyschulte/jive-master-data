@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActivityContent.json"
+  },
+  "properties": {
+    "recipientIds": {
+      "type": "object",
+      "javaType": "java.util.Collection<Long>"
+    },
+    "numRecipients": {
+      "type": "integer"
+    },
+    "messageType": {
+      "type": "string"
+    }
+  }
+}

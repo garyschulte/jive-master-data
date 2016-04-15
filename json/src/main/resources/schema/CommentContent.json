@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActivityContent.json"
+  },
+  "properties": {
+    "parentCommentId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "parentComment": {
+      "type": "object",
+      "$ref": "CommentContent.json"
+    }
+  }
+}

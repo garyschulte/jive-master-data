@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "contentObjectType": {
+      "type": "string"
+    },
+    "contentObjectId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "definitionObjectType": {
+      "type": "string"
+    },
+    "definitionObjectId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "definitionName": {
+      "type": "string"
+    },
+    "extensionUUID": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "deserializationClassProperty" : "@class",
+  "properties": {
+    "objectType": {
+      "type": "string"
+    },
+    "objectId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "objectHash": {
+      "type" : "string"
+    },
+    "isDataAvailable": {
+      "type": "boolean"
+    },
+    "extras": {
+      "type": "object",
+      "javaType" : "java.util.Map<String, Object>"
+    },
+    "tags": {
+      "type": "object",
+      "javaType" : "java.util.List<String>"
+    },
+    "combinedObjectTypeId" : {
+      "type" : "string"
+    }
+  }
+}

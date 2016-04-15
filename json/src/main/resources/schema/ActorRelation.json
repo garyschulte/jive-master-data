@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "user": {
+      "$ref": "Actor.json"
+    },
+    "relatedUser": {
+      "$ref": "Actor.json"
+    },
+    "status": {
+      "type": "string"
+    },
+    "graphType": {
+      "type": "string",
+      "default": "FRIENDS"
+    },
+    "relation": {
+      "type": "string",
+      "default": "PEER"
+    },
+    "created": {
+      "type": "object",
+      "javaType" : "java.util.Date"
+    },
+    "retired": {
+      "type": "object",
+      "javaType" : "java.util.Date"
+
+    }
+  }
+}

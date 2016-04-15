@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ThreadActionObject.json"
+  },
+  "properties": {
+    "questionStatus": {
+      "type": "string"
+    },
+    "resolved": {
+      "type": "boolean"
+    },
+    "assumedResolved": {
+      "type": "boolean"
+    },
+    "open": {
+      "type": "boolean"
+    },
+    "questionCreationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "resolutionDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "numHelpfulAnswers": {
+      "type": "integer"
+    },
+    "numReplies": {
+      "type": "integer"
+    }
+  }
+}

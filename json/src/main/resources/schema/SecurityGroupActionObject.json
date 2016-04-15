@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "creationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "modificationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "federated": {
+      "type": "boolean"
+    }
+  }
+}

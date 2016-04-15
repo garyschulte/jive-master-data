@@ -1,0 +1,57 @@
+{
+  "type" : "object",
+  "properties" : {
+    "name" : {
+      "type" : "string"
+    },
+    "timestamp" : {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "seqId" : {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "uuid" : {
+      "type" : "string"
+    },
+    "context" : {
+      "type" : "object",
+      "javaType" : "java.util.Map<String, java.util.Map<String, String>>"
+    },
+    "payload" : {
+      "type" : "object",
+      "javaType" : "java.util.Map<String, String>"
+    },
+    "actorID" : {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "actorType" : {
+      "type" : "integer"
+    },
+    "activityType" : {
+      "type" : "string"
+    },
+    "actionObjectId" : {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "actionObjectType" : {
+      "type" : "integer"
+    },
+    "containerId" : {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "containerType" : {
+      "type" : "integer"
+    },
+    "isHistoricalReplay" : {
+      "type" : "boolean"
+    },
+    "activity" : {
+      "$ref" : "AnalyticsActivity.json"
+    }
+ }
+}

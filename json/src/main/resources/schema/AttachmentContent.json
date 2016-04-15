@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "mimeType": {
+      "type": "string"
+    },
+    "fileName": {
+      "type": "string"
+    },
+    "attachmentSize": {
+      "type": "integer"
+    },
+    "contentDataAvailable": {
+      "type": "boolean"
+    },
+    "creationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "modificationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    }
+  }
+}

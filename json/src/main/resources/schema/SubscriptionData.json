@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "subscriptionId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "subscribed": {
+      "type": "boolean"
+    }
+  }
+}

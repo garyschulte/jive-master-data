@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "badgeId": {
+      "type": "string"
+    },
+    "userEmail": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "streamEntryId": {
+      "type": "string"
+    },
+    "streamEntryUrl": {
+      "type": "string"
+    }
+  }
+}

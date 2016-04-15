@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "subject": {
+      "type": "string"
+    },
+    "creationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "modifiedDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "author": {
+      "$ref": "Actor.json",
+      "javaType" : "com.jivesoftware.community.cloudalytics.event.jsonschema.Actor"
+    },
+    "containerId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "containerType": {
+      "type": "string"
+    },
+    "isVisibleToPartner": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "versionId": {
+      "type": "integer"
+    },
+    "latestVersionAuthorId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "url": {
+      "type": "string"
+    },
+    "fullPath": {
+      "type": "string"
+    },
+    "normalizedPath": {
+      "type": "string"
+    },
+    "authorId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    }
+  }
+}

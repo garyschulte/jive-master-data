@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "size": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

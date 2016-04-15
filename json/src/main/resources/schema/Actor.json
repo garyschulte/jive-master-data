@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "creationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "modificationDate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "profile": {
+      "type": "object",
+      "javaType" : "java.util.Map<String, Object>"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "lastLoggedIn": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "lastProfileUpdate": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "type": {
+      "type": "string"
+    },
+    "federated": {
+      "type": "boolean"
+    },
+    "visible": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "publicationData": {
+      "type": "array",
+      "items": {
+        "$ref": "PublicationData.json"
+      }
+    }
+  }
+}

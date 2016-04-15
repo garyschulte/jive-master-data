@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "tileDefinitionObjectType": {
+      "type": "string"
+    },
+    "tileDefinitionObjectId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "tileDefinitionName": {
+      "type": "string"
+    },
+    "tileDefinitionVisualType": {
+      "type": "string"
+    },
+    "isActivityStream": {
+      "type": "boolean"
+    },
+    "extensionUUID": {
+      "type": "string"
+    }
+  }
+}

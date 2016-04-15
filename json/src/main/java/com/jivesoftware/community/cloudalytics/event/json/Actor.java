@@ -30,7 +30,7 @@ public class Actor extends ActionObject implements Cloneable {
     @JsonProperty
     private Long modificationDate;
     @JsonProperty
-    private Map<String, String> profile = new TreeMap<String, String>();
+    private Map<String, Object> profile = new TreeMap<>();
     @JsonProperty
     private Boolean enabled;
     @JsonProperty
@@ -110,11 +110,11 @@ public class Actor extends ActionObject implements Cloneable {
         this.modificationDate = modificationDate;
     }
 
-    public Map<String, String> getProfile() {
+    public Map<String, Object> getProfile() {
         return profile;
     }
 
-    public void setProfile(Map<String, String> profile) {
+    public void setProfile(Map<String, Object> profile) {
         this.profile = profile;
     }
 

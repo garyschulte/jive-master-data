@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "keywords": {
+      "type": "string"
+    },
+    "searchSelectedId": {
+      "type": "object",
+      "javaType": "java.lang.Long"
+    },
+    "searchSelectedType": {
+      "type": "string"
+    },
+    "queries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "searchFinalQuery": {
+      "type": "string"
+    }
+  }
+}
