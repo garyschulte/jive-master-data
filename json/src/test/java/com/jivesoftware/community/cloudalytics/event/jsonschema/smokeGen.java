@@ -8,6 +8,142 @@ import org.junit.Test;
  */
 public class smokeGen {
 
+static String badActor = "{\n" +
+                "  \"name\":\"ACTIVITY_SENT_SHARE\",\n" +
+                "  \"timestamp\":1460697144856,\n" +
+                "  \"seqId\":4786,\n" +
+                "  \"uuid\":\"a3f0c980-02c8-11e6-8115-005056a740d8\",\n" +
+                "  \"context\":{ },\n" +
+                "  \"payload\":{\n" +
+                "\n" +
+                "  },\n" +
+                "  \"actorID\":2184,\n" +
+                "  \"actorType\":3,\n" +
+                "  \"activityType\":\"Send\",\n" +
+                "  \"actionObjectId\":1062,\n" +
+                "  \"actionObjectType\":700,\n" +
+                "  \"containerId\":1170,\n" +
+                "  \"containerType\":2020,\n" +
+                "  \"activity\":{\n" +
+                "    \"actor\":{\n" +
+                "      \"@class\":\".Actor\",\n" +
+                "      \"objectType\":\"user\",\n" +
+                "      \"objectId\":2184,\n" +
+                "      \"objectHash\":\"1a3de99ad5a2c6e0485650e6874a3c3ae6fdbabe\",\n" +
+                "      \"isDataAvailable\":true,\n" +
+                "      \"extras\":{\n" +
+                "\n" +
+                "      },\n" +
+                "      \"tags\":[\n" +
+                "\n" +
+                "      ],\n" +
+                "      \"username\":\"regularuser-xdg1lfqswr7j@example.com\",\n" +
+                "      \"name\":\"regularUser-xdG1LFQSwR7j TestUser\",\n" +
+                "      \"firstName\":\"regularUser-xdG1LFQSwR7j\",\n" +
+                "      \"lastName\":\"TestUser\",\n" +
+                "      \"email\":\"regularuser-xdg1lfqswr7j@example.com\",\n" +
+                "      \"creationDate\":1460697065264,\n" +
+                "      \"modificationDate\":1460697075215,\n" +
+                "      \"profile\":{\n" +
+                "        \"hasAvatar\":\"true\"\n" +
+                "      },\n" +
+                "      \"enabled\":true,\n" +
+                "      \"lastLoggedIn\":1460697067599,\n" +
+                "      \"lastProfileUpdate\":1460697065555,\n" +
+                "      \"type\":\"REGULAR\",\n" +
+                "      \"federated\":false,\n" +
+                "      \"visible\":true,\n" +
+                "      \"status\":\"registered\",\n" +
+                "      \"url\":\"https://banzai-qe-people-places-brewspace-123-8.jivelandia.com/people/regularuser-xdg1lfqswr7j@example.com\"\n" +
+                "    },\n" +
+                "    \"action\":\"Send\",\n" +
+                "    \"actionObject\":{\n" +
+                "      \"@class\":\".ActivityDestination\",\n" +
+                "      \"objectType\":\"socialgroup\",\n" +
+                "      \"objectId\":1062,\n" +
+                "      \"objectHash\":\"2f052e81be19d0299013e35ff1999790056d0529\",\n" +
+                "      \"isDataAvailable\":true,\n" +
+                "      \"extras\":{\n" +
+                "        \"recipientUser\":{\n" +
+                "          \"objectType\":\"user\",\n" +
+                "          \"objectId\":2185,\n" +
+                "          \"isDataAvailable\":true,\n" +
+                "          \"extras\":{\n" +
+                "\n" +
+                "          },\n" +
+                "          \"tags\":[\n" +
+                "\n" +
+                "          ],\n" +
+                "          \"username\":\"regularuser-brvcf8ng6qmy@example.com\",\n" +
+                "          \"name\":\"regularUser-brVcf8nG6Qmy TestUser\",\n" +
+                "          \"firstName\":\"regularUser-brVcf8nG6Qmy\",\n" +
+                "          \"lastName\":\"TestUser\",\n" +
+                "          \"email\":\"regularuser-brvcf8ng6qmy@example.com\",\n" +
+                "          \"creationDate\":1460697065909,\n" +
+                "          \"modificationDate\":1460697066193,\n" +
+                "          \"profile\":{\n" +
+                "            \"hasAvatar\":\"true\"\n" +
+                "          },\n" +
+                "          \"enabled\":true,\n" +
+                "          \"lastLoggedIn\":-1,\n" +
+                "          \"lastProfileUpdate\":1460697066192,\n" +
+                "          \"type\":\"REGULAR\",\n" +
+                "          \"federated\":false,\n" +
+                "          \"visible\":true,\n" +
+                "          \"status\":\"registered\",\n" +
+                "          \"url\":\"https://banzai-qe-people-places-brewspace-123-8.jivelandia.com/people/regularuser-brvcf8ng6qmy@example.com\"\n" +
+                "        },\n" +
+                "        \"shareModifiedDate\":1460697144805,\n" +
+                "        \"shareStatus\":\"Published\",\n" +
+                "        \"shareAuthors\":\"2185,2184\",\n" +
+                "        \"shareSubject\":\"Hi,  Check out 'RobotGroup-ltohEfnXxiGg' in Jive.\",\n" +
+                "        \"shareCreationDate\":1460697144805\n" +
+                "      },\n" +
+                "      \"tags\":[\n" +
+                "\n" +
+                "      ],\n" +
+                "      \"name\":\"RobotGroup-ltohEfnXxiGg\",\n" +
+                "      \"displayName\":\"robotgroup-ltohefnxxigg\",\n" +
+                "      \"description\":\"jive-api-test group desc\",\n" +
+                "      \"creationDate\":1460697062925,\n" +
+                "      \"modificationDate\":1460697062925,\n" +
+                "      \"url\":\"https://banzai-qe-people-places-brewspace-123-8.jivelandia.com/groups/robotgroup-ltohefnxxigg\",\n" +
+                "      \"status\":\"ACTIVE\",\n" +
+                "      \"isVisibleToPartner\":false,\n" +
+                "      \"parentId\":17,\n" +
+                "      \"parentType\":\"systemcontainer\",\n" +
+                "      \"fullPath\":\"/systemcontainer_17/socialgroup_1062\",\n" +
+                "      \"normalizedPath\":\"/socialgroup_1062\",\n" +
+                "      \"combinedObjectTypeId\":\"700_1062\"\n" +
+                "    },\n" +
+                "    \"activityTime\":1460697144856,\n" +
+                "    \"destination\":{\n" +
+                "      \"@class\":\".ActivityDestination\",\n" +
+                "      \"objectType\":\"usercontainer\",\n" +
+                "      \"objectId\":1170,\n" +
+                "      \"objectHash\":\"69163606995cbddb198ba8804ff04cce8189c2fe\",\n" +
+                "      \"isDataAvailable\":true,\n" +
+                "      \"extras\":{ },\n" +
+                "      \"tags\":[\n" +
+                "\n" +
+                "      ],\n" +
+                "      \"name\":\"regularUser-xdG1LFQSwR7j TestUser\",\n" +
+                "      \"displayName\":\"regularuser-xdg1lfqswr7j@example.com\",\n" +
+                "      \"description\":\"regularUser-xdG1LFQSwR7j TestUser\",\n" +
+                "      \"creationDate\":1460697065306,\n" +
+                "      \"modificationDate\":1460697065306,\n" +
+                "      \"url\":\"https://banzai-qe-people-places-brewspace-123-8.jivelandia.com/people/regularuser-xdg1lfqswr7j@example.com\",\n" +
+                "      \"status\":\"ACTIVE\",\n" +
+                "      \"isVisibleToPartner\":false,\n" +
+                "      \"parentId\":1,\n" +
+                "      \"parentType\":\"community\",\n" +
+                "      \"fullPath\":\"/community_1/usercontainer_1170\",\n" +
+                "      \"normalizedPath\":\"/usercontainer_1170\",\n" +
+                "      \"combinedObjectTypeId\":\"2020_1170\"\n" +
+                "    }\n" +
+                "  },\n" +
+                "  \"isHistoricalReplay\":false\n" +
+                "}";
     static String testDoc = "{\n" +
             "               \"name\": \"ACTIVITY_CREATE_MESSAGE\",\n" +
             "               \"timestamp\": 1413308470322,\n" +
@@ -164,7 +300,7 @@ public class smokeGen {
     @Test
     public void basicParse() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        EventDocument doc = mapper.readValue(testDoc, EventDocument.class);
+        EventDocument doc = mapper.readValue(badActor, EventDocument.class);
         System.err.println(doc);
 
     }

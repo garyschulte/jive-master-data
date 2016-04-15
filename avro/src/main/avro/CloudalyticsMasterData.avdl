@@ -11,8 +11,23 @@ protocol Cloudalytics {
         union { null, string } objectHash = null;
         union { null, boolean } isDataAvailable;
         array<string> tags;
-        map<union { null, string, boolean, long, int, map<string>}> extras;
-
+        map< union { null
+                    ,string
+                    ,long
+                    ,boolean
+                    ,int
+                    ,array< union { string, long, int}>
+                    ,map< union { null
+                                 ,string
+                                 ,long
+                                 ,boolean
+                                 ,int
+                                 ,array< union { string, long } >
+                                 ,map < union { null, string, long, boolean, int} >
+                                }
+                        >
+                   }
+           > extras;
         map<union { null, string, long, int, boolean, map <string>}> profile;
         union { null, string } username;
         union {null, string } name;
@@ -40,8 +55,24 @@ protocol Cloudalytics {
         union { null, long } objectId;
         union { null, string } objectHash;
         union { null, string } name;
-        map<union {null, string, boolean, long, int}> extras;
-        array<string> tags;
+        map< union { null
+                    ,string
+                    ,long
+                    ,boolean
+                    ,int
+                    ,array< union { string, long, int}>
+                    ,map< union { null
+                                 ,string
+                                 ,long
+                                 ,boolean
+                                 ,int
+                                 ,array< union { string, long } >
+                                 ,map < union { null, string, long, boolean, int} >
+                                }
+                        >
+                   }
+           > extras;
+       array<string> tags;
 
         union { null, string } displayName;
         union { null, string } description;
@@ -221,8 +252,23 @@ protocol Cloudalytics {
         union { null, string } objectHash;
 		union { null, boolean } isDataAvailable;
         array<string> tags;
-        map<string> extras;
-        union { null, string } subject;
+        map< union { null
+                    ,string
+                    ,long
+                    ,boolean
+                    ,int
+                    ,array< union { string, long, int}>
+                    ,map< union { null
+                                 ,string
+                                 ,long
+                                 ,boolean
+                                 ,int
+                                 ,array< union { string, long } >
+                                 ,map < union { null, string, long, boolean, int} >
+                                }
+                        >
+                   }
+           > extras;        union { null, string } subject;
 		union { null, long } creationDate;
 		union { null, long } modificationDate;  // thank god for consistency.  /snark
         union { null, AvroActor } author;
@@ -277,8 +323,23 @@ protocol Cloudalytics {
         union { null, string } objectHash;
 		union { null, boolean } isDataAvailable;
         array<string> tags;
-        map<string> extras;
-        string subject;
+        map< union { null
+                    ,string
+                    ,long
+                    ,boolean
+                    ,int
+                    ,array< union { string, long, int}>
+                    ,map< union { null
+                                 ,string
+                                 ,long
+                                 ,boolean
+                                 ,int
+                                 ,array< union { string, long } >
+                                 ,map < union { null, string, long, boolean, int} >
+                                }
+                        >
+                   }
+           > extras;        string subject;
 		union { null, long } creationDate;
 		union { null, long } modificationDate;  // thank god for consistency.  /snark
         union { null, AvroActor } author;
