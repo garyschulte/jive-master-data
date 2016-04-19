@@ -5,11 +5,11 @@ protocol Cloudalytics {
     record AvroActor {
         @order("ignore")
 
-        union { null, string } class;
+        union { null, string } class = null;
         string objectType;
-        union { null,long } objectId;
+        union { null,long } objectId = null;
         union { null, string } objectHash = null;
-        union { null, boolean } isDataAvailable;
+        union { null, boolean } isDataAvailable = null;
         array<string> tags;
         map< union { null
                     ,string
@@ -29,32 +29,32 @@ protocol Cloudalytics {
                    }
            > extras;
         map<union { null, string, long, int, boolean, map <string>}> profile;
-        union { null, string } username;
-        union {null, string } name;
-        union { null, string } firstName;
-        union { null, string } lastName;
+        union { null, string } username = null;
+        union {null, string } name = null;
+        union { null, string } firstName = null;
+        union { null, string } lastName = null;
         union { null, string } email = null;
-        union { null, long } creationDate;
-        union { null, long } modificationDate;
+        union { null, long } creationDate = null;
+        union { null, long } modificationDate = null;
 
-        union { null, boolean } enabled;
-        union { null, long } lastLoggedIn;
-        union { null, long } lastProfileUpdate;
+        union { null, boolean } enabled = null;
+        union { null, long } lastLoggedIn = null;
+        union { null, long } lastProfileUpdate = null;
         string type;
-        union { null, boolean } federated;
-        union { null, boolean } visible;
+        union { null, boolean } federated = null;
+        union { null, boolean } visible = null;
 
-        union { null, string } status;
-        union { null, string } url;
+        union { null, string } status = null;
+        union { null, string } url = null;
     }
 
     record AvroDestination {
         @order("ignore")
         string class;
         string objectType;
-        union { null, long } objectId;
-        union { null, string } objectHash;
-        union { null, string } name;
+        union { null, long } objectId = null;
+        union { null, string } objectHash = null;
+        union { null, string } name = null;
         map< union { null
                     ,string
                     ,long
@@ -74,171 +74,171 @@ protocol Cloudalytics {
            > extras;
        array<string> tags;
 
-        union { null, string } displayName;
-        union { null, string } description;
-        union { null, string } url;
-        union { null, string } status;
-        union { null, string } fullPath;
-        union { null, string } normalizedPath;
-        union { null, string } combinedObjectTypeId;
-        union { null, boolean } isDataAvailable;
-        union { null, boolean } isVisibleToPartner;
-		union { null, long } creationDate;
-		union { null, long } modificationDate;
-		union { null, long } parentId;
-        union { null, string } parentType;
+        union { null, string } displayName = null;
+        union { null, string } description = null;
+        union { null, string } url = null;
+        union { null, string } status = null;
+        union { null, string } fullPath = null;
+        union { null, string } normalizedPath = null;
+        union { null, string } combinedObjectTypeId = null;
+        union { null, boolean } isDataAvailable = null;
+        union { null, boolean } isVisibleToPartner = null;
+		union { null, long } creationDate = null;
+		union { null, long } modificationDate = null;
+		union { null, long } parentId = null;
+        union { null, string } parentType = null;
     }
 
     record AvroActorRelation {
         @order("ignore")
-        union { null, AvroActor } user;
-        union { null, AvroActor } relatedUser;
-        union { null, string } status;
-        union { null, string } graphType;
-        union { null, string } relation;
-		union { null, long } creationDate;
-		union { null, long } retiredDate;
+        union { null, AvroActor } user = null;
+        union { null, AvroActor } relatedUser = null;
+        union { null, string } status = null;
+        union { null, string } graphType = null;
+        union { null, string } relation = null;
+		union { null, long } creationDate = null;
+		union { null, long } retiredDate = null;
     }
 
     record AvroActorRelationList {
         @order("ignore")
-		union { null, int } size;
-        union { null, string } name;
+		union { null, int } size = null;
+        union { null, string } name = null;
     }
 
     record AvroAppLoad {
         @order("ignore")
-        union { null, string } appName;
-        union { null, string } appURL;
-        union { null, string } extensionUUID;
-		union { null, boolean } isSynthetic;
-        union { null, string } associatedObjectType;
-		union { null, long } associatedObjectId;
-        union { null, string } associatedName;
+        union { null, string } appName = null;
+        union { null, string } appURL = null;
+        union { null, string } extensionUUID = null;
+		union { null, boolean } isSynthetic = null;
+        union { null, string } associatedObjectType = null;
+		union { null, long } associatedObjectId = null;
+        union { null, string } associatedName = null;
     }
 
 
     record AvroAttachment {
         @order("ignore")
-        union { null, string } mimeType;
-        union { null, string } fileName;
-		union { null, int } attachmentSize;
-		union { null, boolean } contentDataAvailable;
-		union { null, long } creationDate;
-		union { null, long } modificationDate;
+        union { null, string } mimeType = null;
+        union { null, string } fileName = null;
+		union { null, int } attachmentSize = null;
+		union { null, boolean } contentDataAvailable = null;
+		union { null, long } creationDate = null;
+		union { null, long } modificationDate = null;
     }
 
     record AvroExStorageFile {
         @order("ignore")
-        union { null, string } contentObjectType;
-		union { null, long } contentObjectId;
-        union { null, string } definitionObjectType;
-		union { null, long } definitionObjectId;
-        union { null, string } definitionName;
-        union { null, string } extensionUUID;
+        union { null, string } contentObjectType = null;
+		union { null, long } contentObjectId = null;
+        union { null, string } definitionObjectType = null;
+		union { null, long } definitionObjectId = null;
+        union { null, string } definitionName = null;
+        union { null, string } extensionUUID = null;
     }
 
     record AvroExStorageAttachment {
         @order("ignore")
-        union { null, string } definitionObjectType;
-		union { null, long } definitionObjectId;
-        union { null, string } definitionName;
-        union { null, string } extensionUUID;
+        union { null, string } definitionObjectType = null;
+		union { null, long } definitionObjectId = null;
+        union { null, string } definitionName = null;
+        union { null, string } extensionUUID = null;
     }
 
     record AvroExtension {
         @order("ignore")
         string extensionUUID;
-        union { null, string } name;
-		union { null, long } creationDate;
-		union { null, long } deployDate;
-		union { null, boolean } isLocal;
-        union { null, string } status;
-        union { null, string } type;
-		union { null, boolean } isVisibleToAll;
+        union { null, string } name = null;
+		union { null, long } creationDate = null;
+		union { null, long } deployDate = null;
+		union { null, boolean } isLocal = null;
+        union { null, string } status = null;
+        union { null, string } type = null;
+		union { null, boolean } isVisibleToAll = null;
     }
 
     record AvroHistoricalReplayStatistics {
         @order("ignore")
-        union {null, string } state;
-		union { null, int } batchSize;
-		union { null, int } batchIntervalMS;
-        union { null, string } runId;
-        union { null, string } stage;
-		union { null, long } stageNumToProcess;
-		union { null, long } stageStartTime;
-		union { null, long } stageEndTime;
-		union { null, int } stageProcessedCount;
-		union { null, int } stageSentCount;
-		union { null, int } stageDroppedCount;
-		union { null, int } stageErrorCount;
-		union { null, int } stageUnknownCodeCount;
-        union { null, string } cursor;
-		union { null, long } batchStartTime;
-		union { null, int } batchNumFound;
-		union { null, int } batchSentCount;
-		union { null, int } batchDroppedCount;
-		union { null, int } batchErrorCount;
-		union { null, int } batchUnknownCodeCount;
+        union {null, string } state = null;
+		union { null, int } batchSize = null;
+		union { null, int } batchIntervalMS = null;
+        union { null, string } runId = null;
+        union { null, string } stage = null;
+		union { null, long } stageNumToProcess = null;
+		union { null, long } stageStartTime = null;
+		union { null, long } stageEndTime = null;
+		union { null, int } stageProcessedCount = null;
+		union { null, int } stageSentCount = null;
+		union { null, int } stageDroppedCount = null;
+		union { null, int } stageErrorCount = null;
+		union { null, int } stageUnknownCodeCount = null;
+        union { null, string } cursor = null;
+		union { null, long } batchStartTime = null;
+		union { null, int } batchNumFound = null;
+		union { null, int } batchSentCount = null;
+		union { null, int } batchDroppedCount = null;
+		union { null, int } batchErrorCount = null;
+		union { null, int } batchUnknownCodeCount = null;
     }
 
     record AvroInvitation {
         @order("ignore")
-		union { null, long } invitationId;
-        union { null, string } invterUserName;
-        union { null, string } inviterEmail;
-        union { null, string } inviteeEmail;
-        union { null, string } revokerUsername;
-        union { null, string } state;
-		union { null, long } sentDate;
-		union { null, long } revokeDate;
-		union { null, long } creationDate;
-		union { null, long } modificationDate;
+		union { null, long } invitationId = null;
+        union { null, string } invterUserName = null;
+        union { null, string } inviterEmail = null;
+        union { null, string } inviteeEmail = null;
+        union { null, string } revokerUsername = null;
+        union { null, string } state = null;
+		union { null, long } sentDate = null;
+		union { null, long } revokeDate = null;
+		union { null, long } creationDate = null;
+		union { null, long } modificationDate = null;
 
     }
 
     record AvroPlayboxQuest {
         @order("ignore")
-        union { null, string } questId;
-        union { null, string } taskId;
-        union { null, string } secret;
-		union { null, boolean } isApiRequest;
+        union { null, string } questId = null;
+        union { null, string } taskId = null;
+        union { null, string } secret = null;
+		union { null, boolean } isApiRequest = null;
     }
 
     record AvroSearch {
         @order("ignore")
-        union {null, string } keywords;
-		union { null, long } searchSelectedId;
-        union { null, string } searchSelectedType;
-        union { null, array<string> } queries;
-        union { null, string } searchFinalQuery;
+        union {null, string } keywords = null;
+		union { null, long } searchSelectedId = null;
+        union { null, string } searchSelectedType = null;
+        union { null, array<string> } queries = null;
+        union { null, string } searchFinalQuery = null;
     }
 
     record AvroSecurityGroup {
         @order("ignore")
-        union { null, string } name;
-		union { null, long } creationDate;
-		union { null, long } modificationDate;
-		union { null, boolean } federated;
+        union { null, string } name = null;
+		union { null, long } creationDate = null;
+		union { null, long } modificationDate = null;
+		union { null, boolean } federated = null;
     }
 
     record AvroTileInstance {
         @order("ignore")
-        union { null, string } tileDefinitionObjectType;
-		union { null, long } tileDefinitionObjectId;
-        union { null, string } tileDefinitionName;
-        union { null, string } tileDefinitionVisualType;
-		union { null, boolean } isActivityStream;
-        union { null, string } extensionUUID;
+        union { null, string } tileDefinitionObjectType = null;
+		union { null, long } tileDefinitionObjectId = null;
+        union { null, string } tileDefinitionName = null;
+        union { null, string } tileDefinitionVisualType = null;
+		union { null, boolean } isActivityStream = null;
+        union { null, string } extensionUUID = null;
     }
 
     record AvroUserRewardBadge {
         @order("ignore")
-        union { null, string } badgeId;
-        union { null, string } userEmail;
-        union { null, string } message;
-        union { null, string } streamEntryId;
-        union { null, string } streamEntryUrl;
+        union { null, string } badgeId = null;
+        union { null, string } userEmail = null;
+        union { null, string } message = null;
+        union { null, string } streamEntryId = null;
+        union { null, string } streamEntryUrl = null;
     }
 
     /******** BEGIN CONTENT ACTIVITY DEFINITIONS **********/
@@ -248,9 +248,9 @@ protocol Cloudalytics {
         @order("ignore")
         string class;
         string objectType;
-		union { null, long } objectId;
-        union { null, string } objectHash;
-		union { null, boolean } isDataAvailable;
+		union { null, long } objectId = null;
+        union { null, string } objectHash = null;
+		union { null, boolean } isDataAvailable = null;
         array<string> tags;
         map< union { null
                     ,string
@@ -268,19 +268,20 @@ protocol Cloudalytics {
                                 }
                         >
                    }
-           > extras;        union { null, string } subject;
-		union { null, long } creationDate;
-		union { null, long } modificationDate;  // thank god for consistency.  /snark
-        union { null, AvroActor } author;
-        union { null, long } authorId;
-		union { null, long } containerId;
-        union { null, string } containerType;
-		union { null, boolean } isVisibleToPartner;
-        union { null, string } status;
-        union { null, string } url;
-        union { null, string } fullPath;
-        union { null, string } normalizedPath;
-        union { null, string } combinedObjectTypeId;
+           > extras;
+        union { null, string } subject = null;
+		union { null, long } creationDate = null;
+		union { null, long } modificationDate = null;
+        union { null, AvroActor } author = null;
+        union { null, long } authorId = null;
+		union { null, long } containerId = null;
+        union { null, string } containerType = null;
+		union { null, boolean } isVisibleToPartner = null;
+        union { null, string } status = null;
+        union { null, string } url = null;
+        union { null, string } fullPath = null;
+        union { null, string } normalizedPath = null;
+        union { null, string } combinedObjectTypeId = null;
          //Comment fields
         union { null, long } parentCommentId = null;
         union { null, AvroParentComment } parentComment = null;
@@ -319,9 +320,9 @@ protocol Cloudalytics {
         @order("ignore")
         string class;
         string objectType;
-		union { null, long } objectId;
-        union { null, string } objectHash;
-		union { null, boolean } isDataAvailable;
+		union { null, long } objectId = null;
+        union { null, string } objectHash = null;
+		union { null, boolean } isDataAvailable = null;
         array<string> tags;
         map< union { null
                     ,string
@@ -339,19 +340,20 @@ protocol Cloudalytics {
                                 }
                         >
                    }
-           > extras;        string subject;
-		union { null, long } creationDate;
-		union { null, long } modificationDate;  // thank god for consistency.  /snark
-        union { null, AvroActor } author;
-        union { null, long } authorId;
-		union { null, long } containerId;
-        union { null, string } containerType;
-		union { null, boolean } isVisibleToPartner;
-        union { null, string } status;
-        union { null, string } url;
-        union { null, string } fullPath;
-        union { null, string } normalizedPath;
-        union { null, string } combinedObjectTypeId;
+           > extras;
+        string subject;
+		union { null, long } creationDate = null;
+		union { null, long } modificationDate = null;
+        union { null, AvroActor } author = null;
+        union { null, long } authorId = null;
+		union { null, long } containerId = null;
+        union { null, string } containerType = null;
+		union { null, boolean } isVisibleToPartner = null;
+        union { null, string } status = null;
+        union { null, string } url = null;
+        union { null, string } fullPath = null;
+        union { null, string } normalizedPath = null;
+        union { null, string } combinedObjectTypeId = null;
         union { null, boolean } completed = null;
         union { null, long } dueDate = null;
         union { null, AvroActor } owner = null;
@@ -381,21 +383,21 @@ protocol Cloudalytics {
     record AvroContent {
         @order("ignore")
         //ActionContent fields
-        union { null, string } subject;
-		union { null, long } creationDate;
-		union { null, long } modificationDate;
+        union { null, string } subject = null;
+		union { null, long } creationDate = null;
+		union { null, long } modificationDate = null;
 
-        union { null, AvroActor } author;
-        union {null, long } authorId;
-		union { null, long } containerId;
-        union { null, string } containerType;
-		union { null, boolean } isVisibleToPartner;
-        union { null, string } status;
-        union { null, string } url;
-        union { null, string } fullPath;
-        union { null, string } normalizedPath;
-        union { null, string } combinedObjectTypeId;
-        union { null, AvroComment, AvroQuestion, AvroThread, AvroTask, AvroWallEntry } contentElements;
+        union { null, AvroActor } author = null;
+        union {null, long } authorId = null;
+		union { null, long } containerId = null;
+        union { null, string } containerType = null;
+		union { null, boolean } isVisibleToPartner = null;
+        union { null, string } status = null;
+        union { null, string } url = null;
+        union { null, string } fullPath = null;
+        union { null, string } normalizedPath = null;
+        union { null, string } combinedObjectTypeId = null;
+        union { null, AvroComment, AvroQuestion, AvroThread, AvroTask, AvroWallEntry } contentElements = null;
 
     }
 
@@ -431,7 +433,7 @@ protocol Cloudalytics {
         union { null, AvroActor, AvroDestination, AvroContent, AvroActorRelation, AvroActorRelationList
             , AvroAppLoad, AvroAttachment, AvroExStorageFile, AvroExStorageAttachment, AvroExtension
             , AvroHistoricalReplayStatistics, AvroInvitation, AvroPlayboxQuest, AvroSearch
-            , AvroSecurityGroup, AvroTileInstance, AvroUserRewardBadge } extendedActionObject;
+            , AvroSecurityGroup, AvroTileInstance, AvroUserRewardBadge } extendedActionObject = null;
 
     }
 
@@ -441,9 +443,9 @@ protocol Cloudalytics {
 
         AvroActor actor;
         string action;
-		union { null, long } activityTime;
-        union { null, AvroAction } actionObject;
-        union { null, AvroDestination } destination;
+		union { null, long } activityTime = null;
+        union { null, AvroAction } actionObject = null;
+        union { null, AvroDestination } destination = null;
 
     }
 
@@ -451,20 +453,20 @@ protocol Cloudalytics {
         @order("ignore")
 
         string name;
-		union { null, long } timestamp;
-		union { null, long } seqId;
+		union { null, long } timestamp = null;
+		union { null, long } seqId = null;
         string uuid;
         map<map<string>> context;
-        union { null, map<union { null, string}> } payload;
-		union { null, long } actorId;
-		union { null, int } actorType;
+        union { null, map<union { null, string}> } payload = null;
+		union { null, long } actorId = null;
+		union { null, int } actorType = null;
         string activityType;
-		union { null, long } actionObjectId;
-		union { null, int } actionObjectType;
-		union { null, long } containerId;
-		union { null, int } containerType;
+		union { null, long } actionObjectId = null;
+		union { null, int } actionObjectType = null;
+		union { null, long } containerId = null;
+		union { null, int } containerType = null;
         AvroActivity activity;
-		union { null, boolean } isHistoricalReplay;
+		union { null, boolean } isHistoricalReplay = null;
     }
 
 }

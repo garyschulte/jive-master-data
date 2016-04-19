@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Date;
 
 /**
  * Created by gary.schulte on 4/11/16.
@@ -58,7 +59,7 @@ public class SmokeStats {
                 try {
                     jsonDoc = mapper.readValue(doc, EventDocument.class);
                 } catch (UnrecognizedPropertyException upex) {
-                    System.err.println(String.format("JACKSON for \nunmapped property %s at %s ",upex.getPropertyName(), upex.getPathReference()));
+                    System.err.println(String.format("JACKSON at %s for \nunmapped property %s at %s ",new Date(), upex.getPropertyName(), upex.getPathReference()));
                     unrecognizedPropertyError++;
                     //upex.printStackTrace();
                     jsonDoc = looseMapper.readValue(doc, EventDocument.class);
@@ -73,7 +74,7 @@ public class SmokeStats {
                         } catch (Exception e3) {
                             avroError++;
                             //System.err.println("AVRO\n");
-                            System.err.println("AVRO for\n" + doc);
+                            System.err.println(String.format("AVRO at %s for \n%s", new Date().toString(), doc));
                             String errmsg = e3.getMessage();
                             int firstCR = errmsg.indexOf("\n");
                             System.err.println(errmsg.substring(0, (firstCR > 0) ? firstCR : errmsg.length()));
@@ -82,12 +83,12 @@ public class SmokeStats {
                     }
                 } catch (Exception e2) {
                     xformrError++;
-                    System.err.println("TRANSFORM for\n" + doc);
+                    System.err.println(String.format("TRANSFORM at %s for \n%s", new Date(), doc));
                     e2.printStackTrace();
                 }
             } catch (Exception e) {
                 jsonError ++;
-                System.err.println("JACKSON for \n" + doc);
+                System.err.println(String.format("JACKSON at %sfor \n%s", new Date(), doc));
                 e.printStackTrace();
             }
 
