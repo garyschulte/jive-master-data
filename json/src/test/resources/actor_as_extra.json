@@ -1,0 +1,136 @@
+{
+  "name":"ACTIVITY_SENT_SHARE",
+  "timestamp":1460697144856,
+  "seqId":4786,
+  "uuid":"a3f0c980-02c8-11e6-8115-005056a740d8",
+  "context":{ },
+  "payload":{
+
+  },
+  "actorID":2184,
+  "actorType":3,
+  "activityType":"Send",
+  "actionObjectId":1062,
+  "actionObjectType":700,
+  "containerId":1170,
+  "containerType":2020,
+  "activity":{
+    "actor":{
+      "@class":".Actor",
+      "objectType":"user",
+      "objectId":2184,
+      "objectHash":"1a3de99ad5a2c6e0485650e6874a3c3ae6fdbabe",
+      "isDataAvailable":true,
+      "extras":{
+
+      },
+      "tags":[
+
+      ],
+      "username":"regularuser-xdg1lfqswr7j@example.com",
+      "name":"regularUser-xdG1LFQSwR7j TestUser",
+      "firstName":"regularUser-xdG1LFQSwR7j",
+      "lastName":"TestUser",
+      "email":"regularuser-xdg1lfqswr7j@example.com",
+      "creationDate":1460697065264,
+      "modificationDate":1460697075215,
+      "profile":{
+        "hasAvatar":"true"
+      },
+      "enabled":true,
+      "lastLoggedIn":1460697067599,
+      "lastProfileUpdate":1460697065555,
+      "type":"REGULAR",
+      "federated":false,
+      "visible":true,
+      "status":"registered",
+      "url":"https://banzai-qe-people-places-brewspace-123-8.jivelandia.com/people/regularuser-xdg1lfqswr7j@example.com"
+    },
+    "action":"Send",
+    "actionObject":{
+      "@class":".ActivityDestination",
+      "objectType":"socialgroup",
+      "objectId":1062,
+      "objectHash":"2f052e81be19d0299013e35ff1999790056d0529",
+      "isDataAvailable":true,
+      "extras":{
+        "recipientUser":{
+          "objectType":"user",
+          "objectId":2185,
+          "isDataAvailable":true,
+          "extras":{
+
+          },
+          "tags":[
+
+          ],
+          "username":"regularuser-brvcf8ng6qmy@example.com",
+          "name":"regularUser-brVcf8nG6Qmy TestUser",
+          "firstName":"regularUser-brVcf8nG6Qmy",
+          "lastName":"TestUser",
+          "email":"regularuser-brvcf8ng6qmy@example.com",
+          "creationDate":1460697065909,
+          "modificationDate":1460697066193,
+          "profile":{
+            "hasAvatar":"true"
+          },
+          "enabled":true,
+          "lastLoggedIn":-1,
+          "lastProfileUpdate":1460697066192,
+          "type":"REGULAR",
+          "federated":false,
+          "visible":true,
+          "status":"registered",
+          "url":"https://banzai-qe-people-places-brewspace-123-8.jivelandia.com/people/regularuser-brvcf8ng6qmy@example.com"
+        },
+        "shareModifiedDate":1460697144805,
+        "shareStatus":"Published",
+        "shareAuthors":"2185,2184",
+        "shareSubject":"Hi,  Check out 'RobotGroup-ltohEfnXxiGg' in Jive.",
+        "shareCreationDate":1460697144805
+      },
+      "tags":[
+
+      ],
+      "name":"RobotGroup-ltohEfnXxiGg",
+      "displayName":"robotgroup-ltohefnxxigg",
+      "description":"jive-api-test group desc",
+      "creationDate":1460697062925,
+      "modificationDate":1460697062925,
+      "url":"https://banzai-qe-people-places-brewspace-123-8.jivelandia.com/groups/robotgroup-ltohefnxxigg",
+      "status":"ACTIVE",
+      "isVisibleToPartner":false,
+      "parentId":17,
+      "parentType":"systemcontainer",
+      "fullPath":"/systemcontainer_17/socialgroup_1062",
+      "normalizedPath":"/socialgroup_1062",
+      "combinedObjectTypeId":"700_1062"
+    },
+    "activityTime":1460697144856,
+    "destination":{
+      "@class":".ActivityDestination",
+      "objectType":"usercontainer",
+      "objectId":1170,
+      "objectHash":"69163606995cbddb198ba8804ff04cce8189c2fe",
+      "isDataAvailable":true,
+      "extras":{ },
+      "tags":[
+
+      ],
+      "name":"regularUser-xdG1LFQSwR7j TestUser",
+      "displayName":"regularuser-xdg1lfqswr7j@example.com",
+      "description":"regularUser-xdG1LFQSwR7j TestUser",
+      "creationDate":1460697065306,
+      "modificationDate":1460697065306,
+      "url":"https://banzai-qe-people-places-brewspace-123-8.jivelandia.com/people/regularuser-xdg1lfqswr7j@example.com",
+      "status":"ACTIVE",
+      "isVisibleToPartner":false,
+      "parentId":1,
+      "parentType":"community",
+      "fullPath":"/community_1/usercontainer_1170",
+      "normalizedPath":"/usercontainer_1170",
+      "combinedObjectTypeId":"2020_1170"
+    }
+  },
+  "isHistoricalReplay":false
+}

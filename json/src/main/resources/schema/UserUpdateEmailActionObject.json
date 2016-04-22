@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "extends": {
+    "$ref": "ActionObject.json"
+  },
+  "properties": {
+    "oldEmail": {
+      "type": "string"
+    },
+    "newEmail": {
+      "type": "string"
+    }
+  }
+}
