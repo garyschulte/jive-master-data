@@ -1,8 +1,8 @@
-package com.jivesoftware.community.cloudalytics.event;
+package com.jivesoftware.community.cloudalytics.masterdata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jivesoftware.community.cloudalytics.event.avro.AvroEvent;
-import com.jivesoftware.community.cloudalytics.event.jsonschema.EventDocument;
+import com.jivesoftware.community.cloudalytics.masterdata.avro.AvroEvent;
+import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.EventDocument;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.specific.SpecificDatumWriter;
@@ -46,7 +46,7 @@ public class SmokeJSON2AvroMapper {
             "                     \"visible\": \"true\",\n" +
             "                     \"userAgent\": \"Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36\",\n" +
             "                     \"requestId\": \"48ce5090-53c9-11e4-b84e-005056a42765\",\n" +
-            "                     \"event\": \"false\",\n" +
+            "                     \"masterdata\": \"false\",\n" +
             "                     \"userEmail\": \"snavaneeth@sprinklr.com\",\n" +
             "                     \"userType\": \"REGULAR\",\n" +
             "                     \"valueCase\": \"trial\",\n" +

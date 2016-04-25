@@ -1,4 +1,4 @@
-package com.jivesoftware.community.cloudalytics.event.jsonschema;
+package com.jivesoftware.community.cloudalytics.masterdata.jsonschema;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
@@ -28,8 +28,8 @@ public class SmokeGen {
     public static String[] data() {
         String[] eventCases =
                 {"actor_as_extra.json"
-                , "mega_nested_actionObject.json"
-                , "message_content.json"};
+                        , "mega_nested_actionObject.json"
+                        , "message_content.json"};
         return eventCases;
     }
 

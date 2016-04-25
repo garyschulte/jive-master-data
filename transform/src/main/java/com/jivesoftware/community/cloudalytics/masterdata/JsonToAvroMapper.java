@@ -1,7 +1,7 @@
-package com.jivesoftware.community.cloudalytics.event;
+package com.jivesoftware.community.cloudalytics.masterdata;
 
-import com.jivesoftware.community.cloudalytics.event.avro.*;
-import com.jivesoftware.community.cloudalytics.event.json.*;
+import com.jivesoftware.community.cloudalytics.masterdata.avro.*;
+import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.*;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
@@ -86,8 +86,8 @@ public class JsonToAvroMapper {
                     };
 
                     // setup the typemap for the properties ModelMapper has difficulty with
-                    using(actionObjectConverter).map().setExtendedActionObject(source.getExtendedAction());
-                    map().setClass$(source.getSimpleClassName());
+//TODO: fix                    using(actionObjectConverter).map().setExtendedActionObject(source.getExtendedAction());
+                    map().setClass$(source.getClass().getSimpleName());
                 }
             });
         }
@@ -110,12 +110,12 @@ public class JsonToAvroMapper {
 
         } else if (source instanceof ThreadActionObject) {
             AvroThread at = new AvroThread();
-            at.setIsQuestion(((ThreadActionObject)source).isQuestion());
+            at.setIsQuestion(((ThreadActionObject)source).getIsQuestion());
             obj.setContentElements(at);
 
         } else if (source instanceof TaskContent) {
             AvroTask at = new AvroTask();
-            at.setCompleted(((TaskContent) source).isCompleted());
+            at.setCompleted(((TaskContent) source).getCompleted());
             at.setDueDate(((TaskContent) source).getDueDate());
 
             // rely on model mapper to map owner and parent task elements
@@ -131,15 +131,15 @@ public class JsonToAvroMapper {
 
         } else if (source instanceof QuestionActionObject) {
             AvroQuestion aq = new AvroQuestion();
-            aq.setAssumedResolved(((QuestionActionObject) source).isAssumedResolved());
-            aq.setIsQuestion(((QuestionActionObject) source).isQuestion());
+            aq.setAssumedResolved(((QuestionActionObject) source).getAssumedResolved());
+            aq.setIsQuestion(((QuestionActionObject) source).getIsQuestion());
             aq.setNumHelpfulAnswers(((QuestionActionObject)source).getNumHelpfulAnswers());
             aq.setNumReplies(((QuestionActionObject)source).getNumReplies());
-            aq.setOpen(((QuestionActionObject)source).isOpen());
+            aq.setOpen(((QuestionActionObject)source).getOpen());
             aq.setQuestionCreateDate(((QuestionActionObject)source).getQuestionCreationDate());
             aq.setQuestionStatus(((QuestionActionObject)source).getQuestionStatus());
             aq.setResolutionDate(((QuestionActionObject)source).getResolutionDate());
-            aq.setResolved(((QuestionActionObject)source).isResolved());
+            aq.setResolved(((QuestionActionObject)source).getResolved());
             obj.setContentElements(aq);
         } else if (source instanceof CommentContent) {
             AvroComment ac = new AvroComment();

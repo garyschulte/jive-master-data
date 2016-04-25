@@ -14,6 +14,10 @@
     <name>Cloudalytics Master Data JSON</name>
     <packaging>jar</packaging>
 
+    <properties>
+        <schema.dir>${basedir}/src/main/resources/schema/cloudalytics/masterdata</schema.dir>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -53,7 +57,6 @@
         <dependency>
             <groupId>org.skyscreamer</groupId>
             <artifactId>jsonassert</artifactId>
-            <version>1.3.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -67,43 +70,43 @@
                 <configuration>
                     <sourcePaths>
                         <!-- unfortunately, order matters here. referenced objects listed first -->
-                        <sourcePath>${basedir}/src/main/resources/schema/ActionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/ActionObject.json</sourcePath>
 
-                        <sourcePath>${basedir}/src/main/resources/schema/SubscriptionData.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/PublicationData.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/Actor.json</sourcePath>
+                        <sourcePath>${schema.dir}/SubscriptionData.json</sourcePath>
+                        <sourcePath>${schema.dir}/PublicationData.json</sourcePath>
+                        <sourcePath>${schema.dir}/Actor.json</sourcePath>
 
-                        <sourcePath>${basedir}/src/main/resources/schema/ActivityContent.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/ThreadActionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/ActivityContent.json</sourcePath>
+                        <sourcePath>${schema.dir}/ThreadActionObject.json</sourcePath>
 
-                        <sourcePath>${basedir}/src/main/resources/schema/ActivityDestination.json</sourcePath>
+                        <sourcePath>${schema.dir}/ActivityDestination.json</sourcePath>
 
-                        <sourcePath>${basedir}/src/main/resources/schema/AnalyticsActivity.json</sourcePath>
+                        <sourcePath>${schema.dir}/AnalyticsActivity.json</sourcePath>
 
-                        <sourcePath>${basedir}/src/main/resources/schema/EventDocument.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/ActorRelation.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/ActorRelationList.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/AppLoadedObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/AttachmentContent.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/CommentContent.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/ExStorageFileObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/ExtensionObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/ExtStorageAttachmentObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/ExtStorageContainerObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/HistoricalReplayStatisticsActionObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/InvitationActionObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/PbQuestActionObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/QuestionActionObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/SearchActionObject.json</sourcePath>h>
-                        <sourcePath>${basedir}/src/main/resources/schema/SecurityGroupActionObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/TagActionObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/TaskContent.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/TileInstanceObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/UserRewardBadgeActionObject.json</sourcePath>
-                        <sourcePath>${basedir}/src/main/resources/schema/WallEntryContent.json</sourcePath>
+                        <sourcePath>${schema.dir}/EventDocument.json</sourcePath>
+                        <sourcePath>${schema.dir}/ActorRelation.json</sourcePath>
+                        <sourcePath>${schema.dir}/ActorRelationList.json</sourcePath>
+                        <sourcePath>${schema.dir}/AppLoadedObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/AttachmentContent.json</sourcePath>
+                        <sourcePath>${schema.dir}/CommentContent.json</sourcePath>
+                        <sourcePath>${schema.dir}/ExStorageFileObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/ExtensionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/ExtStorageAttachmentObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/ExtStorageContainerObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/HistoricalReplayStatisticsActionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/InvitationActionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/PbQuestActionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/QuestionActionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/SearchActionObject.json</sourcePath>h>
+                        <sourcePath>${schema.dir}/SecurityGroupActionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/TagActionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/TaskContent.json</sourcePath>
+                        <sourcePath>${schema.dir}/TileInstanceObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/UserRewardBadgeActionObject.json</sourcePath>
+                        <sourcePath>${schema.dir}/WallEntryContent.json</sourcePath>
                     </sourcePaths>
                     <outputDirectory>${basedir}/target/generated-sources</outputDirectory>
-                    <targetPackage>com.jivesoftware.community.cloudalytics.event.jsonschema</targetPackage>
+                    <targetPackage>com.jivesoftware.community.cloudalytics.masterdata.jsonschema</targetPackage>
                 </configuration>
                 <executions>
                     <execution>
@@ -127,7 +130,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <file>${basedir}/target/generated-sources/com/jivesoftware/community/cloudalytics/event/jsonschema/ActionObject.java</file>
+                    <file>${basedir}/target/generated-sources/com/jivesoftware/community/cloudalytics/masterdata/jsonschema/ActionObject.java</file>
                     <replacements>
                         <replacement>
                             <token>JsonTypeInfo.Id.CLASS</token>

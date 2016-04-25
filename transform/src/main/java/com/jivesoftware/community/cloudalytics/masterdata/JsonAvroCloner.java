@@ -1,11 +1,11 @@
-package com.jivesoftware.community.cloudalytics.event;
+package com.jivesoftware.community.cloudalytics.masterdata;
 
 /**
  * Created by gary.schulte on 4/14/16.
  */
 
-import com.jivesoftware.community.cloudalytics.event.avro.*;
-import com.jivesoftware.community.cloudalytics.event.jsonschema.*;
+import com.jivesoftware.community.cloudalytics.masterdata.avro.*;
+import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

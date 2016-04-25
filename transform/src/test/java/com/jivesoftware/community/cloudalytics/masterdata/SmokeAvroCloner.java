@@ -1,8 +1,8 @@
-package com.jivesoftware.community.cloudalytics.event;
+package com.jivesoftware.community.cloudalytics.masterdata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jivesoftware.community.cloudalytics.event.avro.AvroEvent;
-import com.jivesoftware.community.cloudalytics.event.jsonschema.EventDocument;
+import com.jivesoftware.community.cloudalytics.masterdata.avro.AvroEvent;
+import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.EventDocument;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.specific.SpecificDatumWriter;
