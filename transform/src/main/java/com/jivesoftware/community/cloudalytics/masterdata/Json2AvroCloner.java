@@ -203,6 +203,9 @@ public class Json2AvroCloner {
                     case "ExtStorageAttachmentObject":
                         eao = clone((ExtStorageAttachmentObject) actionObject);
                         break;
+                    case "ExtStorageContainerObject" :
+                        eao = clone((ExtStorageContainerObject) actionObject);
+                        break;
                     case "ExtensionObject":
                         eao = clone((ExtensionObject) actionObject);
                         break;
@@ -337,6 +340,19 @@ public class Json2AvroCloner {
                 eao.setDefinitionObjectType(ao.getDefinitionObjectType());
                 eao.setDefinitionName(ao.getDefinitionName());
                 eao.setExtensionUUID(ao.getExtensionUUID());
+            }
+            return eao;
+        }
+
+        private static AvroExStorageContainer clone(ExtStorageContainerObject ao) {
+            AvroExStorageContainer eao = null;
+            if (ao != null) {
+                eao = new AvroExStorageContainer();
+                eao.setExtensionUUID(ao.getExtensionUUID());
+                eao.setState(ao.getState());
+                eao.setDefinitionName(ao.getDefinitionName());
+                eao.setDefinitionObjectId(ao.getDefinitionObjectId());
+                eao.setDefinitionObjectType(ao.getDefinitionObjectType());
             }
             return eao;
         }
@@ -488,6 +504,8 @@ public class Json2AvroCloner {
                 avc.setIsVisibleToPartner(ac.getIsVisibleToPartner());
                 avc.setSubject(ac.getSubject());
                 avc.setNormalizedPath(ac.getNormalizedPath());
+                avc.setVersionId(ac.getVersionId());
+                avc.setLatestVersionAuthorId(ac.getLatestVersionAuthorId());
                 Object eco = null;
 
                 // decompose the content elements, again lacking reflection magic to avoid switch statement
@@ -558,6 +576,8 @@ public class Json2AvroCloner {
                 pc.setSubject(cc.getSubject());
                 pc.setTags(eraseListType(cc.getTags()));
                 pc.setUrl(cc.getUrl());
+                pc.setVersionId(cc.getVersionId());
+                pc.setLatestVersionAuthorId(cc.getLatestVersionAuthorId());
             }
             return pc;
         }
@@ -600,7 +620,7 @@ public class Json2AvroCloner {
 
         private static AvroParentTask decompose(TaskContent pt) {
             AvroParentTask pc = null;
-            if (pc != null) {
+            if (pt != null) {
                 pc = new AvroParentTask();
                 pc.setAuthor(Json2AvroCloner.clone(pt.getAuthor()));
                 pc.setAuthorId(pt.getAuthorId());
@@ -626,6 +646,8 @@ public class Json2AvroCloner {
                 pc.setSubject(pt.getSubject());
                 pc.setTags(eraseListType(pt.getTags()));
                 pc.setUrl(pt.getUrl());
+                pc.setVersionId(pt.getVersionId());
+                pc.setLatestVersionAuthorId(pt.getLatestVersionAuthorId());
             }
             return pc;
 

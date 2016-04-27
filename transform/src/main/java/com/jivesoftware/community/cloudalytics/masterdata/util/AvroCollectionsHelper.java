@@ -2,6 +2,7 @@ package com.jivesoftware.community.cloudalytics.masterdata.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class AvroCollectionsHelper {
     /* Support flattening complex maps to <CharSequence, CharSequece> for simplicity of avro transformation */
     public static <KSource,VSource> Map<CharSequence,CharSequence> flattenToJsonMap(Map<KSource, VSource> strMap) {
         Map<CharSequence, CharSequence> charseqMap = null;
+        jsonMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         if (strMap != null) {
             charseqMap = new LinkedHashMap<>();
             for (Map.Entry<KSource, VSource> entry : strMap.entrySet()) {

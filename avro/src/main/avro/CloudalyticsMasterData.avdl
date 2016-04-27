@@ -258,6 +258,7 @@ protocol Cloudalytics {
         union { null, string } fullPath = null;
         union { null, string } normalizedPath = null;
         union { null, int } versionId = null;
+        union { null, long } latestVersionAuthorId = null;
          //Comment fields
         union { null, long } parentCommentId = null;
         union { null, AvroParentComment } parentComment = null;
@@ -315,6 +316,7 @@ protocol Cloudalytics {
         union { null, string } fullPath = null;
         union { null, string } normalizedPath = null;
         union { null, int } versionId = null;
+        union { null, long } latestVersionAuthorId = null;
         union { null, boolean } completed = null;
         union { null, long } dueDate = null;
         union { null, AvroActor } owner = null;
@@ -358,6 +360,7 @@ protocol Cloudalytics {
         union { null, string } fullPath = null;
         union { null, string } normalizedPath = null;
         union { null, int } versionId = null;
+        union { null, long } latestVersionAuthorId = null;
         union { null, AvroComment, AvroQuestion, AvroThread, AvroTask, AvroWallEntry } contentElements = null;
 
     }

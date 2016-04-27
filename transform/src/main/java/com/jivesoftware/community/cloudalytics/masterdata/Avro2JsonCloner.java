@@ -167,7 +167,7 @@ public class Avro2JsonCloner {
             cc.setCreationDate(apc.getCreationDate());
             cc.setFullPath(safeToString(apc.getFullPath()));
             cc.setIsVisibleToPartner(apc.getIsVisibleToPartner());
-            cc.setLatestVersionAuthorId(apc.getAuthorId());
+            cc.setLatestVersionAuthorId(apc.getLatestVersionAuthorId());
             cc.setModifiedDate(apc.getModificationDate());
             cc.setNormalizedPath(safeToString(apc.getNormalizedPath()));
             cc.setStatus(safeToString(apc.getStatus()));
@@ -190,6 +190,7 @@ public class Avro2JsonCloner {
     static TaskContent clone(AvroParentTask apt) {
         TaskContent tc = null;
         if (apt != null) {
+            tc = new TaskContent();
             tc.setCompleted(apt.getCompleted());
             tc.setDueDate(apt.getDueDate());
             tc.setOwner(Avro2JsonCloner.clone(apt.getOwner()));
@@ -206,7 +207,7 @@ public class Avro2JsonCloner {
             tc.setCreationDate(apt.getCreationDate());
             tc.setFullPath(safeToString(apt.getFullPath()));
             tc.setIsVisibleToPartner(apt.getIsVisibleToPartner());
-            tc.setLatestVersionAuthorId(apt.getAuthorId());
+            tc.setLatestVersionAuthorId(apt.getLatestVersionAuthorId());
             tc.setModifiedDate(apt.getModificationDate());
             tc.setNormalizedPath(safeToString(apt.getNormalizedPath()));
             tc.setStatus(safeToString(apt.getStatus()));
@@ -297,7 +298,7 @@ public class Avro2JsonCloner {
                 jsonContent.setCreationDate(ac.getCreationDate());
                 jsonContent.setFullPath(safeToString(ac.getFullPath()));
                 jsonContent.setIsVisibleToPartner(ac.getIsVisibleToPartner());
-                jsonContent.setLatestVersionAuthorId(ac.getAuthorId());
+                jsonContent.setLatestVersionAuthorId(ac.getLatestVersionAuthorId());
                 jsonContent.setModifiedDate(ac.getModificationDate());
                 jsonContent.setNormalizedPath(safeToString(ac.getNormalizedPath()));
                 jsonContent.setStatus(safeToString(ac.getStatus()));
@@ -489,7 +490,7 @@ public class Avro2JsonCloner {
                 iao.setInvitationId(ai.getInvitationId());
                 iao.setInviteeEmail(safeToString(ai.getInviteeEmail()));
                 iao.setInviterEmail(safeToString(ai.getInviterEmail()));
-                iao.setInviterEmail(safeToString(ai.getInvterUserName()));
+                iao.setInviterUsername(safeToString(ai.getInvterUserName()));
                 iao.setModificationDate(ai.getModificationDate());
                 iao.setRevokeDate(ai.getRevokeDate());
                 iao.setRevokerUsername(safeToString(ai.getRevokerUsername()));
