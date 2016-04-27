@@ -23,11 +23,11 @@
     },
     "created": {
       "type": "object",
-      "javaType" : "java.util.Date"
+      "javaType" : "java.lang.Long"
     },
     "retired": {
       "type": "object",
-      "javaType" : "java.util.Date"
+      "javaType" : "java.lang.Long"
 
     }
   }

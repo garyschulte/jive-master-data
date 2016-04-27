@@ -8,8 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.reflections.Reflections;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -45,7 +43,7 @@ public class TestActionTransforms {
     public void smokeEachActionType() throws IllegalAccessException, InstantiationException, JsonProcessingException {
         System.out.println(actionType.getName());
         ActionObject actionObj = factory.manufacturePojo(actionType);
-        AvroAction avroAction = JsonAvroCloner.decompose(actionObj);
+        AvroAction avroAction = Json2AvroCloner.clone(actionObj);
 
         System.out.println(avroAction);
         //String actionJson = mapper.writeValueAsString(actionObj);

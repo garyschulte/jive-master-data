@@ -58,6 +58,19 @@
             <artifactId>jsonassert</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.unitils</groupId>
+            <artifactId>unitils-core</artifactId>
+            <version>3.4.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>master-data-json</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

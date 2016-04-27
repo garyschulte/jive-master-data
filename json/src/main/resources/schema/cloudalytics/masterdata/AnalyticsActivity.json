@@ -12,7 +12,7 @@
     },
     "activityTime": {
       "type": "object",
-      "javaType" : "java.util.Date"
+      "javaType" : "java.lang.Long"
     },
     "destination": {
       "$ref" : "ActivityDestination.json"

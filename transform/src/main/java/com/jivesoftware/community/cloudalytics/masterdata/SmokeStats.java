@@ -67,7 +67,7 @@ public class SmokeStats {
 
                 try {
                     if (jsonDoc != null) {
-                        AvroEvent avroDoc = JsonAvroCloner.clone(jsonDoc);
+                        AvroEvent avroDoc = Json2AvroCloner.clone(jsonDoc);
 
                         try {
                             avroOut.append(avroDoc);

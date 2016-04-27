@@ -212,12 +212,11 @@ public class SmokeJSON2AvroMapper {
     }
     public void testBidirectional(String doc, File file) throws IOException {
         EventDocument nested = parseTestDoc(doc);
-        AvroEvent avroEvent = JsonToAvroMapper.map(nested, AvroEvent.class);
-        EventDocument postAvroJson = AvroToJsonMapper.map(avroEvent, EventDocument.class);
+        AvroEvent avroEvent = Json2AvroCloner.clone(nested);
+        EventDocument postAvroJson = Avro2JsonCloner.clone(avroEvent);
         assertEquals("failed to correctly map action object", (long) nested.getActionObjectType(), (long) avroEvent.getActionObjectType());
         if (file != null) {
-            writeAvroDoc(avroEvent.getActivity().getActor(), file);
-            //writeAvroDoc(avroEvent, file);
+            writeAvroDoc(avroEvent, file);
         }
     }
 

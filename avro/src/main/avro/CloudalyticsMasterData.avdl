@@ -2,33 +2,30 @@
 
 protocol Cloudalytics {
 
+    record AvroSubscription {
+        @order("ignore")
+        union { null, long } subscriptionId = null;
+        union { null, boolean } subscribed = null;
+    }
+
+    record AvroPublication {
+        @order("ignore")
+        union { null, long } publicationId = null;
+        array<AvroSubscription> publicationData;
+    }
+
     record AvroActor {
         @order("ignore")
 
-        union { null, string } class = null;
+        string class;
+        union { null, string } combinedObjectTypeId = null;
         string objectType;
         union { null,long } objectId = null;
         union { null, string } objectHash = null;
         union { null, boolean } isDataAvailable = null;
         array<string> tags;
-        map< union { null
-                    ,string
-                    ,long
-                    ,boolean
-                    ,int
-                    ,array< union { string, long, int}>
-                    ,map< union { null
-                                 ,string
-                                 ,long
-                                 ,boolean
-                                 ,int
-                                 ,array< union { string, long } >
-                                 ,map < union { null, string, long, boolean, int} >
-                                }
-                        >
-                   }
-           > extras;
-        map<union { null, string, long, int, boolean, map <string>}> profile;
+        map< union { null, string } > extras;
+        map< union { null, string } > profile;
         union { null, string } username = null;
         union {null, string } name = null;
         union { null, string } firstName = null;
@@ -46,32 +43,18 @@ protocol Cloudalytics {
 
         union { null, string } status = null;
         union { null, string } url = null;
+        array<AvroPublication> publicationData = null;
     }
 
     record AvroDestination {
         @order("ignore")
         string class;
+        union { null, string } combinedObjectTypeId = null;
         string objectType;
         union { null, long } objectId = null;
         union { null, string } objectHash = null;
         union { null, string } name = null;
-        map< union { null
-                    ,string
-                    ,long
-                    ,boolean
-                    ,int
-                    ,array< union { string, long, int}>
-                    ,map< union { null
-                                 ,string
-                                 ,long
-                                 ,boolean
-                                 ,int
-                                 ,array< union { string, long } >
-                                 ,map < union { null, string, long, boolean, int} >
-                                }
-                        >
-                   }
-           > extras;
+        map< union { null, string } > extras;
        array<string> tags;
 
         union { null, string } displayName = null;
@@ -80,7 +63,6 @@ protocol Cloudalytics {
         union { null, string } status = null;
         union { null, string } fullPath = null;
         union { null, string } normalizedPath = null;
-        union { null, string } combinedObjectTypeId = null;
         union { null, boolean } isDataAvailable = null;
         union { null, boolean } isVisibleToPartner = null;
 		union { null, long } creationDate = null;
@@ -135,6 +117,15 @@ protocol Cloudalytics {
         union { null, string } definitionObjectType = null;
 		union { null, long } definitionObjectId = null;
         union { null, string } definitionName = null;
+        union { null, string } extensionUUID = null;
+    }
+
+    record AvroExStorageContainer {
+        @order("ignore")
+        union { null, string } definitionObjectType = null;
+		union { null, long } definitionObjectId = null;
+        union { null, string } definitionName = null;
+        union { null, string } state = null;
         union { null, string } extensionUUID = null;
     }
 
@@ -247,28 +238,13 @@ protocol Cloudalytics {
         // flattened Comment, exists to resolve circular reference between actionObject and Comment and enforce type
         @order("ignore")
         string class;
+        union { null, string } combinedObjectTypeId = null;
         string objectType;
 		union { null, long } objectId = null;
         union { null, string } objectHash = null;
 		union { null, boolean } isDataAvailable = null;
         array<string> tags;
-        map< union { null
-                    ,string
-                    ,long
-                    ,boolean
-                    ,int
-                    ,array< union { string, long, int}>
-                    ,map< union { null
-                                 ,string
-                                 ,long
-                                 ,boolean
-                                 ,int
-                                 ,array< union { string, long } >
-                                 ,map < union { null, string, long, boolean, int} >
-                                }
-                        >
-                   }
-           > extras;
+        map< union { null, string } > extras;
         union { null, string } subject = null;
 		union { null, long } creationDate = null;
 		union { null, long } modificationDate = null;
@@ -281,7 +257,7 @@ protocol Cloudalytics {
         union { null, string } url = null;
         union { null, string } fullPath = null;
         union { null, string } normalizedPath = null;
-        union { null, string } combinedObjectTypeId = null;
+        union { null, int } versionId = null;
          //Comment fields
         union { null, long } parentCommentId = null;
         union { null, AvroParentComment } parentComment = null;
@@ -297,13 +273,13 @@ protocol Cloudalytics {
 
     record AvroThread {
         @order("ignore")
-		union { null, boolean } isQuestion = false;
+		boolean isQuestion = false;
     }
 
     record AvroQuestion {
         @order("ignore")
         //  Question fields
-        union { boolean } isQuestion = true;
+        boolean isQuestion = true;
         union { null, string } questionStatus = null;
         union { null, boolean } resolved = null;
         union { null, boolean } assumedResolved = null;
@@ -319,28 +295,13 @@ protocol Cloudalytics {
         // flattened Task object, exists to resolve circular reference between actionObject and Task and enforce type
         @order("ignore")
         string class;
+        union { null, string } combinedObjectTypeId = null;
         string objectType;
 		union { null, long } objectId = null;
         union { null, string } objectHash = null;
 		union { null, boolean } isDataAvailable = null;
         array<string> tags;
-        map< union { null
-                    ,string
-                    ,long
-                    ,boolean
-                    ,int
-                    ,array< union { string, long, int}>
-                    ,map< union { null
-                                 ,string
-                                 ,long
-                                 ,boolean
-                                 ,int
-                                 ,array< union { string, long } >
-                                 ,map < union { null, string, long, boolean, int} >
-                                }
-                        >
-                   }
-           > extras;
+        map< union { null, string } > extras;
         string subject;
 		union { null, long } creationDate = null;
 		union { null, long } modificationDate = null;
@@ -353,7 +314,7 @@ protocol Cloudalytics {
         union { null, string } url = null;
         union { null, string } fullPath = null;
         union { null, string } normalizedPath = null;
-        union { null, string } combinedObjectTypeId = null;
+        union { null, int } versionId = null;
         union { null, boolean } completed = null;
         union { null, long } dueDate = null;
         union { null, AvroActor } owner = null;
@@ -396,7 +357,7 @@ protocol Cloudalytics {
         union { null, string } url = null;
         union { null, string } fullPath = null;
         union { null, string } normalizedPath = null;
-        union { null, string } combinedObjectTypeId = null;
+        union { null, int } versionId = null;
         union { null, AvroComment, AvroQuestion, AvroThread, AvroTask, AvroWallEntry } contentElements = null;
 
     }
@@ -407,28 +368,13 @@ protocol Cloudalytics {
     record AvroAction {
         @order("ignore")
         string class;
-        union { null, string, long } objectType;
+        union { null, string } combinedObjectTypeId = null;
+        union { null, string } objectType;
 		union { null, long } objectId;
         union { null, string } objectHash;
 		union { null, boolean } isDataAvailable;
         array<string> tags;
-        map< union { null
-                    ,string
-                    ,long
-                    ,boolean
-                    ,int
-                    ,array< union { string, long, int}>
-                    ,map< union { null
-                                 ,string
-                                 ,long
-                                 ,boolean
-                                 ,int
-                                 ,array< union { string, long } >
-                                 ,map < union { null, string, long, boolean, int} >
-                                }
-                        >
-                   }
-           > extras;
+        map< union { null, string } > extras;
 
         union { null, AvroActor, AvroDestination, AvroContent, AvroActorRelation, AvroActorRelationList
             , AvroAppLoad, AvroAttachment, AvroExStorageFile, AvroExStorageAttachment, AvroExtension
