@@ -17,13 +17,22 @@ import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.regex.Pattern;
 
+import static org.junit.Assert.assertTrue;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 /**
@@ -41,12 +50,14 @@ public class SmokeCloners {
     }
 
     @Parameterized.Parameters
-    public static String[] data() {
-        String[] eventCases =
-                {"actor_as_extra.json"
-                        , "mega_nested_actionObject.json"
-                        , "message_content.json"
-                };
+    public static List<String> data() {
+        List<String> eventCases = new ArrayList<>();
+        Collection<URL> urls = ClasspathHelper.forPackage("testCases");
+        Reflections refs = new Reflections(new ConfigurationBuilder().setUrls(urls).setScanners(new ResourcesScanner()));
+
+        for(String testCase : refs.getResources(Pattern.compile("smoke.*\\.json"))) {
+            eventCases.add(testCase);
+        }
         return eventCases;
     }
 
@@ -58,6 +69,8 @@ public class SmokeCloners {
         AvroEvent avroEvent = Json2AvroCloner.clone(doc);
         EventDocument deXformed = Avro2JsonCloner.clone(avroEvent);
         assertReflectionEquals(doc, deXformed);
+        assertTrue("Unexpected additional properties in de-transformed document: " + deXformed.getAdditionalProperties(),
+                deXformed.getAdditionalProperties().size()== 0);
 
         String docReSerialized = mapper.writeValueAsString(deXformed);
         JSONAssert.assertEquals(testDoc, docReSerialized, JSONCompareMode.LENIENT);

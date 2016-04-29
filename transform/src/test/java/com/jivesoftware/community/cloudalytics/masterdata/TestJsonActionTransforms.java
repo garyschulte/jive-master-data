@@ -1,14 +1,10 @@
 package com.jivesoftware.community.cloudalytics.masterdata;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.jivesoftware.community.cloudalytics.masterdata.avro.AvroAction;
-import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.*;
+import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.ActionObject;
 import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,13 +13,11 @@ import org.junit.runners.Parameterized;
 import org.reflections.Reflections;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
-import uk.co.jemos.podam.api.*;
-import uk.co.jemos.podam.common.AttributeStrategy;
+import uk.co.jemos.podam.api.DefaultClassInfoStrategy;
+import uk.co.jemos.podam.api.PodamFactory;
+import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
