@@ -1,4 +1,4 @@
-package com.jivesoftware.community.cloudalytics.masterdata;
+package com.jivesoftware.community.cloudalytics.masterdata.util;
 
 /**
  * Created by gary.schulte on 4/14/16.
@@ -6,17 +6,20 @@ package com.jivesoftware.community.cloudalytics.masterdata;
 
 import static com.jivesoftware.community.cloudalytics.masterdata.util.AvroCollectionsHelper.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.jivesoftware.community.cloudalytics.masterdata.ParseException;
 import com.jivesoftware.community.cloudalytics.masterdata.avro.*;
 import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 
 /**
- * brute force json/jackson-to-avro transformation class
+ * static utility methods to transform json/jackson to avro objects
  *
- * TODO: break this up into sensible/readable classes
  */
 public class Json2AvroCloner {
 
@@ -158,7 +161,13 @@ public class Json2AvroCloner {
 
     /**
      * compartmentalize all of the decomposition necessary for the polymorphic
-     * actionObject types
+     * actionObject types.
+     *
+     * Adding new action object types requires the type to be added
+     * to the decompose() switch statement and adding the appropriate
+     * clone method for the extended action object.  Is a candidate
+     * for some reflection refactoring
+     *
      */
 
     public static class AvroActionDecomposer {
@@ -254,10 +263,16 @@ public class Json2AvroCloner {
             return a;
         }
 
-        private static Object clone(ActionObject obj) throws Exception {
+        private static Object clone(ActionObject obj) throws ParseException {
             //no-op. This method should never resolve, unless the specific jackson subclass has not
             // implemented the clone method.
-            throw new RuntimeException("unimplemented clone method for " + obj.getClass().getSimpleName());
+            String actionString = null;
+            try {
+                actionString = jsonMapper.writeValueAsString(obj);
+                throw new ParseException(null, actionString, null);
+            } catch (JsonProcessingException e) {
+                throw new ParseException(e, actionString, null);
+            }
         }
 
 
@@ -673,7 +688,6 @@ public class Json2AvroCloner {
             }
             return eco;
         }
-
 
     }
 

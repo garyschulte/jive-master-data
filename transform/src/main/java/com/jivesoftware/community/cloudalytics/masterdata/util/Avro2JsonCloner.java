@@ -1,7 +1,8 @@
-package com.jivesoftware.community.cloudalytics.masterdata;
+package com.jivesoftware.community.cloudalytics.masterdata.util;
 
 import static com.jivesoftware.community.cloudalytics.masterdata.util.AvroCollectionsHelper.*;
 
+import com.jivesoftware.community.cloudalytics.masterdata.ParseException;
 import com.jivesoftware.community.cloudalytics.masterdata.avro.*;
 import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.*;
 
@@ -11,17 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by gary.schulte on 4/25/16.
+ * Static utility methods for transforming avro types to json/jackson types.
  */
 public class Avro2JsonCloner {
 
-    public static EventDocument clone(AvroEvent avroEvent){
+    public static EventDocument clone(AvroEvent avroEvent) throws ParseException {
         EventDocument eventDoc = null;
         if (avroEvent != null) {
             eventDoc = new EventDocument();
             eventDoc.setActionObjectId(avroEvent.getActionObjectId());
             eventDoc.setActionObjectType(avroEvent.getActionObjectType());
-            eventDoc.setActivity(clone(avroEvent.getActivity()));
             eventDoc.setActivityType(safeToString(avroEvent.getActivityType()));
             eventDoc.setActorID(avroEvent.getActorId());
             eventDoc.setActorType(avroEvent.getActorType());
@@ -34,20 +34,29 @@ public class Avro2JsonCloner {
             eventDoc.setSeqId(avroEvent.getSeqId());
             eventDoc.setTimestamp(avroEvent.getTimestamp());
             eventDoc.setUuid(safeToString(avroEvent.getUuid()));
+            try {
+                eventDoc.setActivity(clone(avroEvent.getActivity()));
+            } catch (ParseException e) {
+                throw new ParseException(e, avroEvent.toString(), eventDoc);
+            }
         }
 
         return eventDoc;
     }
 
-    public static AnalyticsActivity clone(AvroActivity avroActivity) {
+    public static AnalyticsActivity clone(AvroActivity avroActivity) throws ParseException {
         AnalyticsActivity aa = null;
         if (avroActivity != null) {
             aa = new AnalyticsActivity();
             aa.setAction(safeToString(avroActivity.getAction()));
-            aa.setActionObject(clone(avroActivity.getActionObject()));
             aa.setActivityTime(avroActivity.getActivityTime());
             aa.setActor(clone(avroActivity.getActor()));
             aa.setDestination(clone(avroActivity.getDestination()));
+            try {
+                aa.setActionObject(clone(avroActivity.getActionObject()));
+            } catch (ParseException e) {
+                throw new ParseException(e, avroActivity.toString(), aa);
+            }
         }
         return aa;
     }
@@ -229,7 +238,7 @@ public class Avro2JsonCloner {
     }
 
 
-    public static ActionObject clone(AvroAction avroAction) {
+    public static ActionObject clone(AvroAction avroAction) throws ParseException {
         ActionObject ao = null;
 
         if (avroAction != null && avroAction.getClass$() != null) {
@@ -244,7 +253,7 @@ public class Avro2JsonCloner {
     static class ExtendedActionObjectHelper {
 
         /* compartmentalize all of the warning and type checking suppression here */
-        public static ActionObject resolve(AvroAction avroAction) {
+        public static ActionObject resolve(AvroAction avroAction) throws ParseException {
             ActionObject ao = new ActionObject();
             if (avroAction != null) {
                 try {
@@ -257,14 +266,13 @@ public class Avro2JsonCloner {
                         ao = invokeVisitor(ao, eao);
                     }
                 } catch (ClassNotFoundException e) {
-                    //TODO: warn, log, possibly rethrow as failed/partial parse
-                    e.printStackTrace();
+                    // TODO: for this or NPE, an explicit  mapping between the polymorphic types
+                    // and their avro counterparts would be a possible fallback option
+                    throw new ParseException(e, avroAction.toString(), ao);
                 } catch (IllegalAccessException e) {
-                    //TODO: warn, log, possibly rethrow as failed/partial parse
-                    e.printStackTrace();
+                    throw new ParseException(e, avroAction.toString(), ao);
                 } catch (InstantiationException e) {
-                    //TODO: warn, log, possibly rethrow as failed/partial parse
-                    e.printStackTrace();
+                    throw new ParseException(e, avroAction.toString(), ao);
                 }
             }
 

@@ -3,7 +3,7 @@
   <parent>
     <artifactId>master-data</artifactId>
     <groupId>com.jivesoftware.community.cloudalytics</groupId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1.1-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>master-data-transform</artifactId>
@@ -96,6 +96,38 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-core</artifactId>
+      <version>3.4.2</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>ognl</artifactId>
+          <groupId>ognl</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.jivesoftware.community.cloudalytics</groupId>
+      <artifactId>master-data-json</artifactId>
+      <version>0.1.1-SNAPSHOT</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>3.0.2</version>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>
 

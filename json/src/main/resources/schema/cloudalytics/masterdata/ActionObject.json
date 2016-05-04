@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "javaInterfaces" : ["com.jivesoftware.community.cloudalytics.masterdata.jsconschema.EventData"],
   "deserializationClassProperty" : "@class",
   "properties": {
     "objectType": {

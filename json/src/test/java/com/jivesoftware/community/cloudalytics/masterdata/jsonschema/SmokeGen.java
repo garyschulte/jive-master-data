@@ -35,7 +35,7 @@ public class SmokeGen {
     String testDoc = null;
 
     // As corner case type json events show up that are problem for parsing,
-    // add them to master-data-json test/resources/smokeDocs
+    // add them to master-data-json test/resources/testCases with name smoke_*.json
     @Parameterized.Parameters
     public static List<String> data() {
         List<String> eventCases = new ArrayList<>();
@@ -62,8 +62,8 @@ public class SmokeGen {
                 ,(docObj.getAdditionalProperties().size() == 0));
     }
 
-    String getDocAsString(String docName) {
-        URL docURL = getClass().getResource("/" + docName);
+    public static String getDocAsString(String docName) {
+        URL docURL = SmokeGen.class.getResource("/" + docName);
         String docContent = null;
         if (docURL != null) {
             try {

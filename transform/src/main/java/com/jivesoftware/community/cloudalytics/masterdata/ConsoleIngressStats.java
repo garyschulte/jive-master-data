@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.jivesoftware.community.cloudalytics.masterdata.avro.AvroEvent;
 import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.EventDocument;
+import com.jivesoftware.community.cloudalytics.masterdata.util.Json2AvroCloner;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.specific.SpecificDatumWriter;
@@ -16,21 +17,31 @@ import java.io.InputStreamReader;
 import java.util.Date;
 
 /**
- * Created by gary.schulte on 4/11/16.
+ * rudimentary CLI tool which reads ingressed docs from stdin, processes them until SIGTERM is received,
+ * and reports stats.  Useful during development for sampling and validating a stream against schemas
+ * and transformations.
+ *
+ * This will go away eventually.  Here for convenience currently
+ *
+ * read json in from stdin, collect stats on it
+ *  1. jackson-ify it
+ *  2. avro-ify it
+ *  3. validate/write avro to specified file
+ *
  */
-public class SmokeStats {
 
-    /**
-     * read json in from stdin, collect stats on it
-     *  1. jackson-ify it
-     *  2. avro-ify it
-     *  3. validate avro
-     *
-     */
+public class ConsoleIngressStats {
 
     private static int numRead = 0, jsonError = 0, unrecognizedPropertyError = 0, xformrError = 0, avroError = 0;
 
     public static void main(String args[]) throws IOException {
+        String avroFile = null;
+        if (args == null || args.length != 1) {
+            System.err.println("ConsoleIngressStats expects a target file location as a parameter");
+            System.exit(-1);
+        } else {
+            avroFile = args[0];
+        }
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectMapper looseMapper = new ObjectMapper().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -40,7 +51,7 @@ public class SmokeStats {
 
         DatumWriter<AvroEvent> writer = new SpecificDatumWriter<>(AvroEvent.class);
         DataFileWriter<AvroEvent> avroOut = new DataFileWriter<>(writer)
-                .create(AvroEvent.getClassSchema(),new File("/tmp/avroStats.bin"));
+                .create(AvroEvent.getClassSchema(),new File(avroFile));
 
 
         Runtime.getRuntime().addShutdownHook(new Thread() {

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.jivesoftware.community.cloudalytics.masterdata.avro.AvroAction;
 import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.ActionObject;
+import com.jivesoftware.community.cloudalytics.masterdata.util.Avro2JsonCloner;
+import com.jivesoftware.community.cloudalytics.masterdata.util.Json2AvroCloner;
 import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,7 +48,7 @@ public class TestJsonActionTransforms {
     @Parameterized.Parameters
     public static Set<Class<? extends ActionObject>> polymorphicActionTypes()  {
 
-        Reflections reflections = new Reflections();
+        Reflections reflections = new Reflections("com.jivesoftware.community.cloudalytics.masterdata.jsonschema");
         Set <Class<? extends ActionObject>> actionObjectTypes = reflections.getSubTypesOf(ActionObject.class);
         if (actionObjectTypes.size() <1) {
             throw new RuntimeException("jsonschema pojo types not found in classpath");
@@ -55,7 +57,7 @@ public class TestJsonActionTransforms {
     }
 
     @Test
-    public void smokeJsonActionTypes() throws IllegalAccessException, InstantiationException, IOException, JSONException {
+    public void smokeJsonActionTypes() throws IllegalAccessException, InstantiationException, IOException, JSONException, ParseException {
 
         // generate randomized actionobject, serialize and deserialize to get bogus object refs in maps
         ActionObject junkObj = factory.manufacturePojo(actionType);
