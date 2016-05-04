@@ -34,6 +34,9 @@ public class AvroSerializer {
 
     }
 
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings(
+            value="NP_LOAD_OF_KNOWN_NULL_VALUE",
+            justification="Null is acceptable/expected for ParseExceptions")
     public static AvroEvent readAvroEventDoc(File file) throws ParseException {
         AvroEvent avroEvent = null;
         DataFileReader<AvroEvent> dataFileReader = null;

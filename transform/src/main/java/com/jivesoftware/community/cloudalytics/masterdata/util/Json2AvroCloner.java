@@ -10,6 +10,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jivesoftware.community.cloudalytics.masterdata.ParseException;
 import com.jivesoftware.community.cloudalytics.masterdata.avro.*;
 import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -22,6 +24,7 @@ import java.util.List;
  *
  */
 public class Json2AvroCloner {
+    static Logger LOG = LoggerFactory.getLogger(Json2AvroCloner.class);
 
     public static AvroEvent clone(EventDocument eventDoc) {
         AvroEvent e = null ;
@@ -169,7 +172,9 @@ public class Json2AvroCloner {
      * for some reflection refactoring
      *
      */
-
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings(
+            value="BC_UNCONFIRMED_CAST",
+            justification="Casts are checked, but findbugs doesn't recognize")
     public static class AvroActionDecomposer {
 
         public static AvroAction decompose(ActionObject actionObject) {
@@ -189,55 +194,55 @@ public class Json2AvroCloner {
                 Object eao = null;
                 switch (actionObject.getClass().getSimpleName()) {
                     case "ActivityDestination":
-                        eao = Json2AvroCloner.clone((ActivityDestination) actionObject);
+                        if (checkAndLog(ActivityDestination.class, actionObject)) eao = Json2AvroCloner.clone((ActivityDestination) actionObject);
                         break;
                     case "Actor":
-                        eao = Json2AvroCloner.clone((Actor) actionObject);
+                        if (checkAndLog(Actor.class, actionObject)) eao = Json2AvroCloner.clone((Actor) actionObject);
                         break;
                     case "ActorRelation":
-                        eao = clone((ActorRelation) actionObject);
+                        if (checkAndLog(ActorRelation.class, actionObject)) eao = clone((ActorRelation) actionObject);
                         break;
                     case "ActorRelationList":
-                        eao = clone((ActorRelationList) actionObject);
+                        if (checkAndLog(ActorRelationList.class, actionObject)) eao = clone((ActorRelationList) actionObject);
                         break;
                     case "AppLoadedObject":
-                        eao = clone((AppLoadedObject) actionObject);
+                        if (checkAndLog(AppLoadedObject.class, actionObject)) eao = clone((AppLoadedObject) actionObject);
                         break;
                     case "AttachmentContent":
-                        eao = clone((AttachmentContent) actionObject);
+                        if (checkAndLog(AttachmentContent.class, actionObject)) eao = clone((AttachmentContent) actionObject);
                         break;
                     case "ExStorageFileObject":
-                        eao = clone((ExStorageFileObject) actionObject);
+                        if (checkAndLog(ExStorageFileObject.class, actionObject)) eao = clone((ExStorageFileObject) actionObject);
                         break;
                     case "ExtStorageAttachmentObject":
-                        eao = clone((ExtStorageAttachmentObject) actionObject);
+                        if (checkAndLog(ExtStorageAttachmentObject.class, actionObject)) eao = clone((ExtStorageAttachmentObject) actionObject);
                         break;
-                    case "ExtStorageContainerObject" :
-                        eao = clone((ExtStorageContainerObject) actionObject);
+                    case "ExtStorageContainerObject":
+                        if (checkAndLog(ExtStorageContainerObject.class, actionObject)) eao = clone((ExtStorageContainerObject) actionObject);
                         break;
                     case "ExtensionObject":
-                        eao = clone((ExtensionObject) actionObject);
+                        if (checkAndLog(ExtensionObject.class, actionObject)) eao = clone((ExtensionObject) actionObject);
                         break;
                     case "HistoricalReplayStatisticsActionObject":
-                        eao = clone((HistoricalReplayStatisticsActionObject) actionObject);
+                        if (checkAndLog(HistoricalReplayStatisticsActionObject.class, actionObject)) eao = clone((HistoricalReplayStatisticsActionObject) actionObject);
                         break;
                     case "InvitationActionObject":
-                        eao = clone((InvitationActionObject) actionObject);
+                        if (checkAndLog(InvitationActionObject.class, actionObject)) eao = clone((InvitationActionObject) actionObject);
                         break;
                     case "PbQuestActionObject":
-                        eao = clone((PbQuestActionObject) actionObject);
+                        if (checkAndLog(PbQuestActionObject.class, actionObject)) eao = clone((PbQuestActionObject) actionObject);
                         break;
                     case "SearchActionObject":
-                        eao = clone((SearchActionObject) actionObject);
+                        if (checkAndLog(SearchActionObject.class, actionObject)) eao = clone((SearchActionObject) actionObject);
                         break;
                     case "SecurityGroupActionObject":
-                        eao = clone((SecurityGroupActionObject) actionObject);
+                        if (checkAndLog(SecurityGroupActionObject.class, actionObject)) eao = clone((SecurityGroupActionObject) actionObject);
                         break;
                     case "TileInstanceObject":
-                        eao = clone((TileInstanceObject) actionObject);
+                        if (checkAndLog(TileInstanceObject.class, actionObject)) eao = clone((TileInstanceObject) actionObject);
                         break;
                     case "UserRewardBadgeActionObject":
-                        eao = clone((UserRewardBadgeActionObject) actionObject);
+                        if (checkAndLog(UserRewardBadgeActionObject.class, actionObject)) eao = clone((UserRewardBadgeActionObject) actionObject);
                         break;
 
                     // no extended attributes for tag action object
@@ -251,7 +256,7 @@ public class Json2AvroCloner {
                     case "TaskContent":
                     case "ThreadActionObject":
                     case "WallEntryContent":
-                        eao = clone((ActivityContent) actionObject);
+                        if (checkAndLog(ActivityContent.class, actionObject)) eao = clone((ActivityContent) actionObject);
                         break;
 
                     default:
@@ -263,6 +268,9 @@ public class Json2AvroCloner {
             return a;
         }
 
+        @edu.umd.cs.findbugs.annotations.SuppressWarnings(
+                value = "UPM",
+                justification = "This is here for completeness/informational purposes")
         private static Object clone(ActionObject obj) throws ParseException {
             //no-op. This method should never resolve, unless the specific jackson subclass has not
             // implemented the clone method.
@@ -274,8 +282,6 @@ public class Json2AvroCloner {
                 throw new ParseException(e, actionString, null);
             }
         }
-
-
 
 
         private static AvroActorRelation clone(ActorRelation arel) {
@@ -498,6 +504,9 @@ public class Json2AvroCloner {
             return eao;
         }
 
+        @edu.umd.cs.findbugs.annotations.SuppressWarnings(
+                value = "UPM",
+                justification = "This is here for completeness/informational purposes")
         private static Object clone(TagActionObject tao) {
             // tag actions have no extended action attributes
             return null;
@@ -526,19 +535,19 @@ public class Json2AvroCloner {
                 // decompose the content elements, again lacking reflection magic to avoid switch statement
                 switch (ac.getClass().getSimpleName()) {
                     case "CommentContent":
-                        eco = clone((CommentContent) ac);
+                        if (checkAndLog(CommentContent.class, ac)) eco = clone((CommentContent) ac);
                         break;
                     case "QuestionActionObject":
-                        eco = clone((QuestionActionObject) ac);
+                        if (checkAndLog(QuestionActionObject.class, ac)) eco = clone((QuestionActionObject) ac);
                         break;
                     case "TaskContent":
-                        eco = clone((TaskContent) ac);
+                        if (checkAndLog(TaskContent.class, ac)) eco = clone((TaskContent) ac);
                         break;
                     case "ThreadActionObject":
-                        eco = clone((ThreadActionObject) ac);
+                        if (checkAndLog(ThreadActionObject.class, ac)) eco = clone((ThreadActionObject) ac);
                         break;
                     case "WallEntryContent":
-                        eco = clone((WallEntryContent) ac);
+                        if (checkAndLog(WallEntryContent.class, ac)) eco = clone((WallEntryContent) ac);
                         break;
                     default:
                         ;
@@ -689,6 +698,18 @@ public class Json2AvroCloner {
             return eco;
         }
 
+        private static boolean checkAndLog(Class cls, ActionObject ac) {
+            if (ac.getClass().isAssignableFrom(cls)) {
+                return true;
+            } else {
+                LOG.error(
+                        String.format(
+                                "Mismatch between reported ActionObject subclass (%s) and actual type (%s)"
+                                ,cls.getName()
+                                ,ac.getClass().getName()));
+                return false;
+            }
+        }
     }
 
 }

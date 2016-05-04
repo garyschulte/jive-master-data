@@ -274,15 +274,15 @@ public class Avro2JsonCloner {
                 } catch (InstantiationException e) {
                     throw new ParseException(e, avroAction.toString(), ao);
                 }
-            }
 
-            ao.setTags(eraseListType(avroAction.getTags()));
-            ao.setCombinedObjectTypeId(safeToString(avroAction.getCombinedObjectTypeId()));
-            ao.setExtras(unflattenJsonMap(avroAction.getExtras()));
-            ao.setIsDataAvailable(avroAction.getIsDataAvailable());
-            ao.setObjectHash(safeToString(avroAction.getObjectHash()));
-            ao.setObjectId(avroAction.getObjectId());
-            ao.setObjectType(safeToString(avroAction.getObjectType()));
+                ao.setTags(eraseListType(avroAction.getTags()));
+                ao.setCombinedObjectTypeId(safeToString(avroAction.getCombinedObjectTypeId()));
+                ao.setExtras(unflattenJsonMap(avroAction.getExtras()));
+                ao.setIsDataAvailable(avroAction.getIsDataAvailable());
+                ao.setObjectHash(safeToString(avroAction.getObjectHash()));
+                ao.setObjectId(avroAction.getObjectId());
+                ao.setObjectType(safeToString(avroAction.getObjectType()));
+            }
 
             return ao;
         }

@@ -7,6 +7,7 @@ import com.google.common.io.Files;
 import com.jivesoftware.community.cloudalytics.masterdata.jsconschema.EventData;
 import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.ActionObject;
 import com.jivesoftware.community.cloudalytics.masterdata.jsonschema.EventDocument;
+import org.apache.commons.compress.utils.IOUtils;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -18,6 +19,9 @@ public class JsonSerializer {
 
     static ObjectMapper mapper = new ObjectMapper();
 
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings(
+            value="NP_LOAD_OF_KNOWN_NULL_VALUE",
+            justification="Null is acceptable/expected for ParseExceptions")
     public static EventDocument parseEventDoc(String doc) throws ParseException {
         EventDocument docObj = null;
         try {
@@ -28,6 +32,9 @@ public class JsonSerializer {
         return docObj;
     }
 
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings(
+            value="NP_LOAD_OF_KNOWN_NULL_VALUE",
+            justification="Null is acceptable/expected for ParseExceptions")
     public static EventDocument parseEventDoc(File docFile, Charset charset) throws ParseException {
         String docContent = null;
         EventDocument docObj = null;
@@ -43,11 +50,16 @@ public class JsonSerializer {
         return parseEventDoc(docFile, Charsets.UTF_8);
     }
 
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings(
+            value="NP_LOAD_OF_KNOWN_NULL_VALUE",
+            justification="Null is acceptable/expected for ParseExceptions")
+
     <T extends ActionObject> T parseActionObject(String actionObjDoc) throws ParseException {
         T actionObj = null;
         try {
             actionObj = (T) mapper.readValue(actionObjDoc, ActionObject.class);
         } catch (IOException e) {
+
             throw new ParseException(e, actionObjDoc, actionObj);
         }
         return actionObj;
@@ -62,8 +74,12 @@ public class JsonSerializer {
     }
 
     public static void write(EventData jsonObject, File fil) throws WriteException {
+        Writer fw = null;
         try {
-            FileWriter fw = new FileWriter(fil);
+            fw = new OutputStreamWriter(
+                    new FileOutputStream(fil),
+                    Charset.forName("UTF-8").newEncoder()
+            );
             fw.write(serialize(jsonObject));
         } catch (IOException e) {
             throw new WriteException(e, fil, jsonObject);
@@ -72,6 +88,8 @@ public class JsonSerializer {
         } catch (WriteException e) {
             e.targetFile = fil;
             throw e;
+        } finally {
+            IOUtils.closeQuietly(fw);
         }
     }
 

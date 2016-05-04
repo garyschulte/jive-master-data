@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.Date;
 
 /**
@@ -46,7 +47,7 @@ public class ConsoleIngressStats {
         ObjectMapper mapper = new ObjectMapper();
         ObjectMapper looseMapper = new ObjectMapper().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in, Charset.forName("UTF-8")));
         String doc;
 
         DatumWriter<AvroEvent> writer = new SpecificDatumWriter<>(AvroEvent.class);
@@ -65,42 +66,44 @@ public class ConsoleIngressStats {
         while (null!= (doc = br.readLine())){
             numRead++;
             EventDocument jsonDoc = null;
+
             try {
-
+                jsonDoc = mapper.readValue(doc, EventDocument.class);
+            } catch (UnrecognizedPropertyException upex) {
+                System.err.println(String.format("JACKSON at %s for %nunmapped property %s at %s ",new Date(), upex.getPropertyName(), upex.getPathReference()));
+                unrecognizedPropertyError++;
+                //upex.printStackTrace();
                 try {
-                    jsonDoc = mapper.readValue(doc, EventDocument.class);
-                } catch (UnrecognizedPropertyException upex) {
-                    System.err.println(String.format("JACKSON at %s for \nunmapped property %s at %s ",new Date(), upex.getPropertyName(), upex.getPathReference()));
-                    unrecognizedPropertyError++;
-                    //upex.printStackTrace();
                     jsonDoc = looseMapper.readValue(doc, EventDocument.class);
+                } catch (Exception e) {
+                    jsonError ++;
+                    System.err.println(String.format("JACKSON at %sfor %n%s", new Date(), doc));
+                    e.printStackTrace();
+                    break;
                 }
 
-                try {
-                    if (jsonDoc != null) {
-                        AvroEvent avroDoc = Json2AvroCloner.clone(jsonDoc);
+            }
 
-                        try {
-                            avroOut.append(avroDoc);
-                        } catch (Exception e3) {
-                            avroError++;
-                            //System.err.println("AVRO\n");
-                            System.err.println(String.format("AVRO at %s for \n%s", new Date().toString(), doc));
-                            String errmsg = e3.getMessage();
-                            int firstCR = errmsg.indexOf("\n");
-                            System.err.println(errmsg.substring(0, (firstCR > 0) ? firstCR : errmsg.length()));
-                            e3.printStackTrace();
-                        }
+            try {
+                if (jsonDoc != null) {
+                    AvroEvent avroDoc = Json2AvroCloner.clone(jsonDoc);
+
+                    try {
+                        avroOut.append(avroDoc);
+                    } catch (Exception e3) {
+                        avroError++;
+                        //System.err.println("AVRO%n");
+                        System.err.println(String.format("AVRO at %s for %n%s", new Date().toString(), doc));
+                        String errmsg = e3.getMessage();
+                        int firstCR = errmsg.indexOf("%n");
+                        System.err.println(errmsg.substring(0, (firstCR > 0) ? firstCR : errmsg.length()));
+                        e3.printStackTrace();
                     }
-                } catch (Exception e2) {
-                    xformrError++;
-                    System.err.println(String.format("TRANSFORM at %s for \n%s", new Date(), doc));
-                    e2.printStackTrace();
                 }
-            } catch (Exception e) {
-                jsonError ++;
-                System.err.println(String.format("JACKSON at %sfor \n%s", new Date(), doc));
-                e.printStackTrace();
+            } catch (Exception e2) {
+                xformrError++;
+                System.err.println(String.format("TRANSFORM at %s for %n%s", new Date(), doc));
+                e2.printStackTrace();
             }
 
         }
